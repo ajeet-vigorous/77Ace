@@ -2,13 +2,21 @@ import {  useNavigate } from "react-router-dom";
 import { rightSideBarJson } from "../../config/global";
 
 
-const RightSideBar = () => {
+const RightSideBar = ({toggleSidebar}) => {
 
   const navigate = useNavigate();
 
   const handleNavigation = (path) => {
+    if (path=="/Withdraw"){
+      navigate('/addcash', { state: { defaultTab: 'withdraw' } });
+      toggleSidebar()
+    }
+    else{
     navigate(path);
+    toggleSidebar()
+    }
   }
+  
 
   return (
     <div className="flex p-5 gap-4 w-full flex-col h-full">

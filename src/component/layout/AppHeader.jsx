@@ -1,7 +1,9 @@
 import { MdCurrencyRupee } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 
 const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
+  const navigate = useNavigate()
 
   const handleSidebarToggle = () => {
     toggleSidebar();
@@ -26,7 +28,7 @@ const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
             <div className="flex justify-center items-center gap-0.5 pl-1 text-white"><MdCurrencyRupee size={13}/> 0</div>
             <div className="flex gap-2 h-full justify-around  items-center">
             <img src="/header/reset.webp" alt=""  className="w-[20px] h-[20px]"/>
-            <img src="/header/deposit.webp" alt=""  className="w-[35px] h-full"/>
+            <img onClick={()=>{navigate('/addcash')}} src="/header/deposit.webp" alt=""  className="w-[35px] h-full"/>
             </div>           
           </div>
 
