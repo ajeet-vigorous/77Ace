@@ -37,7 +37,7 @@ const Dashboard = () => {
     
 
     </div>
-
+{/* new? */}
     <div className="text-white flex items-center justify-start gap-2 font-semibold p-2 text-[18px] ">
       <img className="w-[20px] h-[20px]" src={casinoTab?.find((item)=>item.id === activeTab).icon} alt="" />
         {
