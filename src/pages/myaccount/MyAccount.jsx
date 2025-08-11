@@ -43,7 +43,7 @@ const MyAccount = () => {
             <img src="sidebar/myaccount/Personal.svg" alt="" height={38} width={38}/>
             <span className='text-[13px] whitespace-nowrap text-white'>Personal Center</span>
             </div>
-            <div className='flex flex-col justify-center items-center cursor-pointer'>
+            <div onClick={()=>{navigate('/history')}} className='flex flex-col justify-center items-center cursor-pointer'>
             <img src="sidebar/myaccount/Recode.svg" alt="" height={38} width={38}/>
             <span className='text-[13px] whitespace-nowrap text-white'>Record</span>
             </div>
@@ -51,7 +51,7 @@ const MyAccount = () => {
             <img src="sidebar/myaccount/Download.svg" alt="" height={38} width={38}/>
             <span className='text-[13px] whitespace-nowrap text-white'>Download </span>
             </div>
-            <div className='flex flex-col justify-center items-center cursor-pointer'>
+            <div onClick={()=>{navigate('/addbank')}} className='flex flex-col justify-center items-center cursor-pointer'>
             <img src="sidebar/myaccount/Bank.svg" alt="" height={38} width={38}/>
             <span className='text-[13px] whitespace-nowrap text-white'>Bank</span>
             </div>

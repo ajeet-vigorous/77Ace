@@ -16,16 +16,25 @@ const RightSideBar = ({toggleSidebar}) => {
     toggleSidebar()
     }
   }
-  
 
+  const user = JSON.parse(
+    localStorage.getItem("user_info_http://localhost:3000")
+  );
+
+  
+const hanldeLogout = () => {
+  localStorage.clear();
+  navigate('/');
+  toggleSidebar()
+}
   return (
     <div className="flex p-5 gap-4 w-full flex-col h-full">
       <div className="flex items-center w-full justify-start  gap-2 rounded-md ">
       
           <img src='/header/1-1.webp' alt="" className="" height={50} width={50} />
           <div className="flex items-start justify-start flex-col  ">
-          <div className="text-white  text-[17px] break-words w-[120px]  font-semibold"> 77ace_8000982866</div>
-          <div className=" text-[13px] font-semibold text-[#999797]">ID:8000982866</div>
+          <div className="text-white  text-[17px] break-words w-[120px]  font-semibold"> {user?.data?.userId}</div>
+          <div className=" text-[13px] font-semibold text-[#999797]">name:{user?.data?.username}</div>
           </div>
        
       </div>
@@ -42,7 +51,7 @@ const RightSideBar = ({toggleSidebar}) => {
         )
       })}
 
-        <div className="flex items-center justify-center  gap-5 rounded-md bg-[#2E2929] h-[40px]">
+        <div onClick={()=>hanldeLogout()} className="flex items-center justify-center  gap-5 rounded-md bg-[#2E2929] h-[40px]">
                 <div className="flex w-full items-center justify-center   gap-3  cursor-pointer  h-[20px]">
             
               <span className="text-white text-[15px] font-semibold">Logout</span>

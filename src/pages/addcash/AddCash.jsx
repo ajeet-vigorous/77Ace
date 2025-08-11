@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { addcashJson, addPaymentBanks } from '../../config/global';
-import { IoIosArrowForward } from 'react-icons/io';
-import { MdCurrencyRupee } from 'react-icons/md';
-import { FaSortDown } from 'react-icons/fa';
+import { addcashJson } from '../../config/global';
 import PaymentScreen from './PaymentScreen';
 import Withdraw from './Withdraw';
 

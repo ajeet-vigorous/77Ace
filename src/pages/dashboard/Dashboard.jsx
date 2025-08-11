@@ -2,9 +2,20 @@ import React, { useState } from "react"
 
 import { casinoTab, footerImages, sliderData } from "../../config/global"
 import SliderComponent from "../../component/slider/Slider"
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('1');
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const handleGameClick = (game) => {
+    if (token) {
+      navigate(`/game/${game.id}`);
+    } else {
+      navigate('/login');
+    }
+  };
   return (
   <div className="w-full h-screen hide-scrollbar  overflow-auto " >
     <div className="w-full flex  flex-row h-[32px] mt-1 mb-3">
@@ -50,7 +61,7 @@ const Dashboard = () => {
       {
         casinoTab?.find((item)=>item.id === activeTab)?.games?.map((item,index)=>{
           return(
-            <div key={index}>
+            <div onClick={()=>{handleGameClick(item)}} key={index}>
               <img src={item.img} alt={item.name} />
               <div className="text-white flex items-center justify-center text-[14px] font-semibold">
                 {item.name}

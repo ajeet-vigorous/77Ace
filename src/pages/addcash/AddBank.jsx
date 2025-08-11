@@ -27,9 +27,9 @@ const AddBank = () => {
        </div>
 
        {bankForm && (
-            <div onClick={() => setBankForm(false)} className="absolute inset-0 bg-black bg-opacity-70 p-10 flex items-center justify-center z-50">
-            <div    onClick={(e) => e.stopPropagation()} className=' bg-black w-full px-2'>
-            <div className='flex justify-end'><RxCross2 onClick={(e) => {e.stopPropagation();setBankForm(false)}} className='cursor-pointer text-white' size={20} /></div> 
+            <div onClick={() => setBankForm(false)} className="absolute inset-0 bg-[#0F0C0C] bg-opacity-70 px-5 flex items-center justify-center z-50">
+            <div    onClick={(e) => e.stopPropagation()} className=' bg-[#0F0C0C] w-full px-5 pb-10 rounded-md'>
+            <div className='flex justify-end'><RxCross2  onClick={(e) => {e.stopPropagation();setBankForm(false)}} className='cursor-pointer my-5 mx-4 text-white' size={20} /></div> 
             <div className='flex flex-col gap-2 items-start justify-start mb-6'>
                 <span className='text-white text-[17px] font-semibold'>Holder Name</span>
                 <input type="text" placeholder='Enter Holder Name' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />

@@ -6,13 +6,24 @@ import { FaAngleDown } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
 
 
-const AppSidebar = () => {
+const AppSidebar = ({toggleSidebar}) => {
   const [promoOpen, setPromoOpen] = useState(false);
   const togglePromo = () => setPromoOpen(prev => !prev);
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
-  const handleNavigation = (path) => {
-    navigate(path);
+  const handleNavigation = (item) => {
+    if (token) {
+      navigate(item.path);
+      toggleSidebar()
+      
+    }else if(item.path === '/') {
+      navigate('/dashboard');
+      toggleSidebar()
+    }else {
+      navigate('/login');
+      toggleSidebar()
+    }
   }
 
   return (
@@ -20,7 +31,7 @@ const AppSidebar = () => {
       {sidebarJson.tabs.map((item,index)=>{
         return(
          
-            <div key={index} onClick={()=>{handleNavigation(item.path)}} className="flex items-center justify-start  gap-5 rounded-md bg-[#2E2929] h-[60px]">
+            <div key={index} onClick={()=>{handleNavigation(item)}} className="flex items-center justify-start  gap-5 rounded-md bg-[#2E2929] h-[60px]">
                 <div className="flex w-full items-center justify-start   gap-3  cursor-pointer  h-[60px]">
               <img src={item.icon} alt="" className="ml-6" height={20} width={20} />
               <span className="text-white font-semibold">{item.name}</span>
