@@ -32,6 +32,20 @@ export const getBetListfunc = createAsyncThunk(
   }
 );
 
+export const domainSettings = createAsyncThunk(
+  "user/domainSettings",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const domainSettings = await userServices.getDomainSettings(payload);
+
+      return domainSettings;
+    } catch (error) {
+
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 
 export const getClientExposure = createAsyncThunk(
   "sports/getClientExposure",
@@ -187,7 +201,17 @@ const userSlice = createSlice({
         state.error = action.payload;
       })
 
-      
+      .addCase(domainSettings.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(domainSettings.fulfilled, (state, action) => {
+        state.loading = false;
+        state.domainSettings = action.payload;
+      })
+      .addCase(domainSettings.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
   },
 });
 

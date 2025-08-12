@@ -10,6 +10,9 @@ import { getBankDetailsByUserId } from '../../redux/reducers/user_reducer';
 const PaymentScreen = ({paymentScreen,setPaymentScreen,activeChannel,setActiveChannel,amount,setAmount,amounts,addcashJson}) => {
 
     const user = useSelector((state) => state.user);
+    const domainSetting = JSON.parse(localStorage.getItem('clientdomainSetting'));
+    console.log(domainSetting)
+    
     const dispatch = useDispatch();
     useEffect(() => {
        
@@ -88,7 +91,7 @@ const PaymentScreen = ({paymentScreen,setPaymentScreen,activeChannel,setActiveCh
 
                <div className='grid grid-cols-4 '>
                    {
-                       addPaymentBanks.map((item,index)=>{
+                       user?.bankDetails?.map((item,index)=>{
                            return(
                                <div key={index} className='flex items-center justify-center'>
                                    <img className='' src={item.img} alt="" />

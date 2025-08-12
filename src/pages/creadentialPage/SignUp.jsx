@@ -3,11 +3,13 @@ import { FaRegEye } from "react-icons/fa";
 import { IoIosLock } from "react-icons/io";
 import { MdPhoneAndroid } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
+import { register } from "../../redux/reducers/auth.reducer";
+import { useDispatch } from "react-redux";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 const [errors, setErrors] = useState({ username: "", password: "" });
@@ -42,13 +44,13 @@ const [errors, setErrors] = useState({ username: "", password: "" });
       };
 
       
-
+      
   
-  //  dispatch(signup({ username: username, password: password })).then((res)=>{
-  //   if(!res.error){
-  //     navigate('/dashboard');
-  //   }
-  //  });
+   dispatch(register(data)).then((res)=>{
+    if(!res.error){
+      navigate('/dashboard');
+    }
+   });
   };
   return (
     <div className="w-ful p-4 ">

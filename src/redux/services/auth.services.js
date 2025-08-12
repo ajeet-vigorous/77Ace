@@ -32,6 +32,16 @@ async function updatePassword(data) {
   }
 }
 
+async function register(data) {
+  try {
+    const user = await apiCall("POST", "website/registerClient", data);
+    return user;
+  } catch (error) {
+    console.error("Error:", error);
+    return Promise.reject(error);
+  }
+}
+
 function logout() {
   localStorage.clear();
   window.location.href("/login")
@@ -41,5 +51,6 @@ function logout() {
 export const authServices = {
   login,
   logout,
+  register,
   updatePassword,
 };
