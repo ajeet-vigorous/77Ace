@@ -15,12 +15,12 @@ export const sidebarJson = {
     {
       name:"Earn Money",
       icon:"/sidebar/earn.webp",
-      path:"/earnMoney"
+      path:"/earn"
     },
     {
       name:"Me",
       icon:"/sidebar/me.webp",
-      path:"/me"
+      path:"/myaccount"
     }
   ],
   promo :[
@@ -118,6 +118,7 @@ export const casinoTab =[
     inactiveIcon:"/dashboard/fliter-hot-a.webp",
     icon:"/dashboard/casinoImg/hot.webp",
     id:'1',
+    casinoName:'trendingGames',
     games:[
       {
         name:"Evolution",
@@ -247,7 +248,8 @@ export const casinoTab =[
     activeIcon:"/dashboard/fliter-all.webp",
     inactiveIcon:"/dashboard/fliter-all-a.webp",
     id:'2',
-    icon:"/dashboard/all.webp",
+    icon:"",
+    casinoName:'allGames',
     games:[
       {
         name:"Evolution",
@@ -287,6 +289,7 @@ export const casinoTab =[
     activeIcon:"/dashboard/fliter-ent.webp",
     inactiveIcon:"/dashboard/fliter-ent-a.webp",
     icon:"/dashboard/casinoImg/ent.webp",
+    casinoName:'liveGames',
     id:'3',
     games:[
       {
@@ -327,6 +330,8 @@ export const casinoTab =[
     inactiveIcon:"/dashboard/fliter-slot-a.webp",
     icon:"/dashboard/casinoImg/slot.webp",
     id:'4',
+    casinoName:'slotGames',
+
     games:[
       {
         name:"Evolution",
@@ -366,6 +371,7 @@ export const casinoTab =[
     inactiveIcon:"/dashboard/fliter-fish-a.webp",
     icon:"/dashboard/casinoImg/fish.webp",
     id:'5',
+    casinoName:'fishGames',
     games:[
       {
         name:"Evolution",
@@ -406,6 +412,7 @@ export const casinoTab =[
     inactiveIcon:"/dashboard/fliter-card-a.webp",
     icon:"/dashboard/casinoImg/card.webp",
     id:'6',
+    casinoName:'cardGames',
     games:[
       {
         name:"Evolution",
@@ -446,6 +453,7 @@ export const casinoTab =[
     inactiveIcon:"/dashboard/fliter-spot-a.webp",
     icon:"/dashboard/casinoImg/spot.webp",
     id:'7',
+    casinoName:'spotGames',
     games:[
       {
         name:"Evolution",
@@ -487,23 +495,28 @@ export const casinoTab =[
 
 export const footerImages = [
   {
+    providerName:"EVOLUTION",
     img:"/footerImg/nexo-1.webp",
     id:"1"
   },
   {
+    providerName: "JiLi",
     img:"/footerImg/nexo-2.webp",
     id:"2"
   },
   {
+    providerName: "",
     img:"/footerImg/nexo-4.webp",
     id:"4"
   },
 
   {
+
     img:"/footerImg/nexo-5.webp",
     id:"5"
   },
   {
+    providerName: "EZUGI",
     img:"/footerImg/nexo-6.webp",
     id:"6"
   },

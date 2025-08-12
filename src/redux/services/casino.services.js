@@ -26,11 +26,28 @@ async function intCasinoCateogeoryWiseList(data) {
   }
 }
 
+async function getCasinoByCategory(data) {
+  try {
+    const response = await apiCall("POST", "website/getCasinoListByCateogeory", data);
+    if(response){
+      localStorage.setItem("getCasinoListByCateogeory", JSON.stringify(response?.data));
+    }
+  return response
+  } catch (error) {
+    console.error("Casino Bet Place error:", error);
+    return Promise.reject(error);
+  }
+}
+
 
 
 async function intGrupCsnoList(data) {
   try {
     const response = await apiCall("POST", "website/getInternationalGroupCasinoList", data);
+    if(response){
+      localStorage.setItem("intGrupCsnoList", JSON.stringify(response?.data));
+      
+    }
 
   return response
   } catch (error) {
@@ -55,6 +72,7 @@ export const casinoServices = {
   casinoBetPlaceFunc,
   intCasinoCateogeoryWiseList,
   intGrupCsnoList,
-  getCasinoLoginUrl
+  getCasinoLoginUrl,
+  getCasinoByCategory
 
 };

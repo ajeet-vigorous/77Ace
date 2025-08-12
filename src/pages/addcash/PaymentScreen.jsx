@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { addPaymentBanks } from '../../config/global';
 import { IoIosArrowForward } from 'react-icons/io';
 import { MdCurrencyRupee } from 'react-icons/md';
 import { FaSortDown } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBankDetailsByUserId } from '../../redux/reducers/user_reducer';
+
 
 const PaymentScreen = ({paymentScreen,setPaymentScreen,activeChannel,setActiveChannel,amount,setAmount,amounts,addcashJson}) => {
-  return (
+
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+    useEffect(() => {
+       
+           
+            dispatch(getBankDetailsByUserId())
+        
+    }, [])
+  
+    return (
     <div> {paymentScreen === 'addcash' && <> <div className=' text-[16px] text-[#8A8888]  my-7'>
         Choose a payment method
       </div>

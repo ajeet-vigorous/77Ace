@@ -41,16 +41,16 @@ const Layout = () => {
     });
 
   return (
-    <div className="flex flex-col h-screen justify-center items-center bg-[#181F2F]">
-      <div
-        className="w-[500px] h-[100vh] flex flex-col "
-        style={{
-          backgroundImage: "url('/dashboard/dashboard-bg.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+    <div className="flex flex-col  h-screen justify-center items-center bg-[#181F2F]">
+    <div
+  className="w-full min-h-screen flex flex-col sm:max-w-[500px] mx-auto"
+  style={{
+    backgroundImage: "url('/dashboard/dashboard-bg.webp')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
         {!isAddCashPage && (
           <div className="h-[69px] shrink-0">
             <AppHeader

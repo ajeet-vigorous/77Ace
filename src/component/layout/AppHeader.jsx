@@ -1,14 +1,15 @@
 import { MdCurrencyRupee } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
+import { intGrupCsnoList } from "../../redux/reducers/casino.reducer";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
   const navigate = useNavigate()
   const token = localStorage.getItem("token");
   const clientBalance = localStorage.getItem("clientBalance");
-
+const dispatch = useDispatch();
  
-  
 
   const handleSidebarToggle = () => {
     toggleSidebar();
@@ -18,7 +19,19 @@ const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
     toggleSubHeader();
   }
 
-  
+  useEffect(()=>{
+    const data = {
+      "categoriesList": true,
+      "providerList": true,
+      "lobbygames": true,
+      "trendingGames": true,
+      "popularGames": true,
+      "liveGames": true
+    }
+    
+      dispatch(intGrupCsnoList(data))
+   
+  },[])
 
 
   return (
@@ -30,7 +43,7 @@ const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
         </div>
         {token && <div className="flex gap-2 h-full justify-end  items-center !pr-[12px]">
           <div className="bg-[#611A1C] w-[170px] flex justify-between py-[2.5px] px-[3px] items-center h-[41px] rounded-xl">
-            <div className="flex justify-center items-center gap-0.5 pl-1 text-white"><MdCurrencyRupee size={13}/> {clientBalance}</div>
+            <div className="flex justify-center items-center gap-0.5 pl-1 text-white"><MdCurrencyRupee size={13}/> {Number(clientBalance).toFixed(2)}</div>
             <div className="flex gap-2 h-full justify-around  items-center">
             <img src="/header/reset.webp" alt=""  className="w-[20px] h-[20px]"/>
             <img onClick={()=>{navigate('/addcash')}} src="/header/deposit.webp" alt=""  className="w-[35px] h-full"/>

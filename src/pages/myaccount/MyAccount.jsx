@@ -1,16 +1,35 @@
 import React from 'react'
 import { MdCurrencyRupee } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
+import { domainName } from '../../config/Auth';
 
 const MyAccount = () => {
     const navigate = useNavigate();
+    const clientBalance = localStorage.getItem("clientBalance");
+    const hanldeLogout = () => {
+      localStorage.removeItem(`user_info_${domainName}`);
+      localStorage.removeItem('token');
+      localStorage.removeItem('clientBalance');
+      localStorage.removeItem('betSlipData');
+      localStorage.removeItem('clientbetChipsData');
+      localStorage.removeItem('oneBetAmount');
+      localStorage.removeItem('oneClickStatus');
+      localStorage.removeItem('dashboardModalOpen');
+      
+      
+      
+      
+    
+      navigate('/');  
+      
+    }
   return (
     <div className="w-full px-5 py-6   h-screen hide-scrollbar  overflow-auto ">
         <div className=" w-[100%] flex  justify-center items-center relative">
         <div className="flex bg-[#DF4747] w-[95%]  h-[60px] rounded-[5px]">
             <div className="flex justify-between w-full items-start pt-3  h-[70px]    px-4 gap-2">              
                 <span className="text-white text-[13px]">Total Score</span>
-                <div className="text-white flex justify-center items-center text-[20px] font-semibold"> <MdCurrencyRupee size={25}/>1000</div>
+                <div className="text-white flex justify-center items-center text-[20px] font-semibold"> <MdCurrencyRupee size={25}/> {Number(clientBalance).toFixed(2)}</div>
             </div>      
         </div>
         <div className="grid grid-cols-3 gap-x-12 rounded-[5px] absolute -bottom-[55px] h-[70px] bg-white/5 backdrop-blur-sm justify-center w-full">
@@ -67,7 +86,7 @@ const MyAccount = () => {
         </div>
 
         <img className="w-full mt-5" src="sidebar/myaccount/advertise.webp" alt=""/>
-        <div className="w-full flex justify-center items-center mt-5 rounded-[5px] p-3 bg-[#2E3034] cursor-pointer text-[18px] font-semibold text-[#AFAFB1]">
+        <div onClick={()=>hanldeLogout()} className="w-full flex justify-center items-center mt-5 rounded-[5px] p-3 bg-[#2E3034] cursor-pointer text-[18px] font-semibold text-[#AFAFB1]">
             LOG OUT
 
         </div>

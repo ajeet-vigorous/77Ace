@@ -12,6 +12,7 @@ async function getUserStatement(data) {
     }
   }
 
+
   async function getUserBalance (data) {
     try {
       const user = await apiCall("POST", "user/userBalance", data);
@@ -25,6 +26,21 @@ async function getUserStatement(data) {
       }
     } catch (error) {
       console.error("Domain setting error:", error);
+      return Promise.reject(error);
+    }
+  }
+
+
+  async function getBankDetailsByUserId () {
+    try {
+      const user = await apiCall("POST", "website/getBankDetailsByUserId");
+  
+      if (user) {
+  
+        return user;
+      }
+    } catch (error) {
+      console.error("User Bank Details error:", error);
       return Promise.reject(error);
     }
   }
@@ -59,6 +75,7 @@ async function getUserStatement(data) {
     getUserStatement,
     userUpdate,
     getBetList,
-    getUserBalance
+    getUserBalance,
+    getBankDetailsByUserId
 
   }

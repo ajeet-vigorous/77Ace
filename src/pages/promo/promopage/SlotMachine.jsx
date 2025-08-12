@@ -60,13 +60,13 @@ const SlotMachine = ({ setScreen }) => {
     },
 
     {
-      id: 11,
-      title: "VIP 10",
+      id: 12,
+      title: "VIP 11",
       rebate: "5%",
     },
     {
-      id: 12,
-      title: "VIP 10",
+      id: 13,
+      title: "VIP 12",
       rebate: "5%",
     },
   ];

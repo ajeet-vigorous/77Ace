@@ -4,10 +4,13 @@ const GrandExchangeSettings = {
   logo: "/logo/grandexchange.png",
   SOCKET_URL: "https://socket.trovetown.co/",
   // apiurl: "https://api.plx99.com/v1/",
-  apiurl: "https://apidiamond.trovetown.co/v1/",
+  // apiurl: "https://apidiamond.trovetown.co/v1/",
+
+apiurl:"https://api.bmexch.com/v1/",
+ 
   domainName: "GRANDEXCH",
   colors: {
-    "--primary": "#9F4636",
+    "--primary": "#9F4636", 
     "--secondary": "#6C2D2C",
     "--matchLagai": "#72bbef",
     "--matchKhai": "#FAA9BA",

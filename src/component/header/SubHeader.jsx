@@ -29,9 +29,9 @@ const SubHeader = () => {
           <p className="text-white text-[13px]" >Promo</p>
         </div>
 
-        <div className="flex flex-col cursor-pointer   h-full gap-2 justify-center items-center" onClick={()=>setSelectedTab('3')}>
+        <div className="flex flex-col cursor-pointer   h-full gap-2 justify-center items-center" onClick={()=>{setSelectedTab('3');navigate('/addcash')}}>
         <div className="w-[75px] h-[75px] absolute -top-8 p-2 rounded-full bg-black/60 backdrop-blur-md">
-          <img src="/navigationtab/centerFloatButton.webp" alt="" onClick={()=>setSelectedTab('3')}/>
+          <img src="/navigationtab/centerFloatButton.webp" alt="" onClick={()=>{setSelectedTab('3');navigate('/addcash')}}/>
           <p className="text-white text-center mt-1.5 text-[13px]" >Wallet</p>
           </div>        
          

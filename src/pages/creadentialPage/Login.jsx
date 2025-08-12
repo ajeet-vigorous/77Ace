@@ -5,12 +5,13 @@ import { MdPhoneAndroid } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/reducers/auth.reducer";
-
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
+const {login_loading} = useSelector((state) => state.authUser);
 const [errors, setErrors] = useState({ username: "", password: "" });
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const [errors, setErrors] = useState({ username: "", password: "" });
    dispatch(login({ username: username, password: password })).then((res)=>{
     if(!res.error){
       navigate('/dashboard');
+     
     }
    });
   };
@@ -105,7 +107,7 @@ const [errors, setErrors] = useState({ username: "", password: "" });
         </div>
       </div>
 
-      <button onClick={submitHandler} className="w-full uppercase mt-1 bg-gradient-to-t from-[#ec1809] to-[#c45f5f] text-white text-[16px] font-semibold rounded-[5px] py-2">
+      <button disabled={login_loading} onClick={submitHandler} className="w-full uppercase mt-1 bg-gradient-to-t from-[#ec1809] to-[#c45f5f] text-white text-[16px] font-semibold rounded-[5px] py-2">
         Confirm
       </button>
 

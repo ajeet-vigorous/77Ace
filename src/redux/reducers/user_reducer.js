@@ -76,6 +76,21 @@ export const getUserBalance = createAsyncThunk(
   }
 );
 
+export const getBankDetailsByUserId = createAsyncThunk(
+  "website/getBankDetailsByUserId",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await userServices.getBankDetailsByUserId();
+      // message.success(user?.message, 2);
+      return response;
+    } catch (error) {
+      // message.error(error?.data?.message, 2);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -160,6 +175,18 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(getBankDetailsByUserId.pending, (state) => {
+        state.casinoLoading = true;
+      })
+      .addCase(getBankDetailsByUserId.fulfilled, (state, action) => {
+        state.casinoLoading = false;
+        state.bankDetailsData = action.payload;
+      })
+      .addCase(getBankDetailsByUserId.rejected, (state, action) => {
+        state.casinoLoading = false;
+        state.error = action.payload;
+      })
+
       
   },
 });

@@ -1,5 +1,6 @@
 import {  useNavigate } from "react-router-dom";
 import { rightSideBarJson } from "../../config/global";
+import { domainName } from "../../config/Auth";
 
 
 const RightSideBar = ({toggleSidebar}) => {
@@ -18,12 +19,24 @@ const RightSideBar = ({toggleSidebar}) => {
   }
 
   const user = JSON.parse(
-    localStorage.getItem("user_info_http://localhost:3000")
+    localStorage.getItem(`user_info_${domainName}`)
   );
 
   
 const hanldeLogout = () => {
-  localStorage.clear();
+  localStorage.removeItem(`user_info_${domainName}`);
+  localStorage.removeItem('token');
+  localStorage.removeItem('clientBalance');
+  localStorage.removeItem('betSlipData');
+  localStorage.removeItem('clientbetChipsData');
+  localStorage.removeItem('oneBetAmount');
+  localStorage.removeItem('oneClickStatus');
+  localStorage.removeItem('dashboardModalOpen');
+  
+  
+  
+  
+
   navigate('/');
   toggleSidebar()
 }

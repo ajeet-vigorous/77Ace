@@ -36,6 +36,24 @@ export const intCasinoCateogeoryWiseList = createAsyncThunk(
   }
 );
 
+
+export const getCasinoByCategory = createAsyncThunk(
+  "website/getCasinoByCategory",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await casinoServices.getCasinoByCategory(userData);
+      // message.success(user?.message, 2);
+      return response;
+    } catch (error) {
+      // message.error(error?.data?.message, 2);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
+
+
 export const intGrupCsnoList = createAsyncThunk(
   "website/getInternationalGroupCasinoList",
   async (userData, { rejectWithValue }) => {
@@ -129,6 +147,20 @@ const casinoSlice = createSlice({
         state.error = action.payload;
       })
 
+
+      .addCase(getCasinoByCategory.pending, (state) => {
+        state.casinoLoading = true;
+      })
+      .addCase(getCasinoByCategory.fulfilled, (state, action) => {
+        state.casinoLoading = false;
+        state.casinoByCategoryData = action.payload;
+      })
+      .addCase(getCasinoByCategory.rejected, (state, action) => {
+        state.casinoLoading = false;
+        state.error = action.payload;
+      })
+
+   
 
   },
 });

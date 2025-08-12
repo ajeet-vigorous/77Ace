@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { RxCross2 } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom'
+import { domainName } from '../../../config/Auth';
 const PersonalInfo = () => {
     const navigate = useNavigate();
     const [edit,setEdit] = useState('');
+    const userDetails = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
+    console.log(userDetails);
 
   return (
     <div className='w-full px-5 py-2   h-screen hide-scrollbar relative overflow-auto '>
@@ -20,19 +23,19 @@ const PersonalInfo = () => {
 
     <div onClick={() => setEdit('nickName')} className='flex justify-start items-start pt-3 flex-col'>
         <span className='text-[#AFAFB1] text-[16px] '>Nick Name</span>
-        <div className='text-white bg-[#261C1C] p-2 mt-1 w-full  rounded-[5px]   text-[16px] '>John Doe</div>
+        <div className='text-white bg-[#261C1C] p-2 mt-1 w-full  rounded-[5px]   text-[16px] '>{userDetails?.data?.name}</div>
     </div>
-    <div  onClick={() => setEdit('email')} className='flex justify-start items-start pt-3 flex-col'>
+    {/* <div  onClick={() => setEdit('email')} className='flex justify-start items-start pt-3 flex-col'>
         <span className='text-[#AFAFB1] text-[16px] '>Email</span>
-        <div className='text-white bg-[#261C1C]  p-2 mt-1  w-full rounded-[5px]    text-[16px] '>JohnDoe@gmail.com</div>
-    </div>
+        <div className='text-white bg-[#261C1C]  p-2 mt-1  w-full rounded-[5px]    text-[16px] '>{userDetails?.data?.email}</div>
+    </div> */}
     <div onClick={() => setEdit('password')}  className='flex justify-start items-start pt-3 flex-col'>
         <span className='text-[#AFAFB1] text-[16px] '>Password</span>
         <div className='text-white bg-[#261C1C] p-2 mt-1 w-full  rounded-[5px]   text-[16px] '>********</div>
     </div>
     <div onClick={() => setEdit('fullName')}  className='flex justify-start items-start pt-3 flex-col'>
         <span className='text-[#AFAFB1] text-[16px] '>Full Name</span>
-        <div className='text-white bg-[#261C1C] p-2 mt-1 w-full  rounded-[5px]   text-[16px] '>John Doe</div>
+        <div className='text-white bg-[#261C1C] p-2 mt-1 w-full  rounded-[5px]   text-[16px] '>{userDetails?.data?.username}</div>
     </div>
 
 

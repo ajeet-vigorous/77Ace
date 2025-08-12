@@ -11,6 +11,7 @@ import History from '../../pages/myaccount/history/History'
 import Download from '../../pages/myaccount/download/Download'
 import PaymentCollectionHistory from '../../pages/myaccount/paymentcollectionhistory/PaymentCollectionHistory'
 import SignUp from '../../pages/creadentialPage/SignUp'
+import Earn from '../../earn/Earn'
 
 
 
@@ -31,6 +32,8 @@ const AppContent = () => {
     <Route path='/history' element={<History />} />
     <Route path='/signup' element={<SignUp />} />
     <Route path='/download' element={<Download />} />
+    <Route path='/earn' element={<Earn />} />
+
     <Route path='/paymentcollectionhistory' element={<PaymentCollectionHistory />} />         
     </Routes>
 
