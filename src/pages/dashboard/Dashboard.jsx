@@ -19,7 +19,7 @@ const Dashboard = () => {
   const handleGameClick = (game) => {
     
     if (token) {
-      navigate(`/game/${game.id}`);
+      navigate(`/iframe/${game.gameId}`);
     } else {
       navigate("/login");
     }

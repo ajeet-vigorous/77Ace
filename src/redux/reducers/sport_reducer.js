@@ -17,6 +17,18 @@ export const getSportMatchList = createAsyncThunk(
   }
 );
 
+export const casinoLogin = createAsyncThunk(
+  "sports/casinoLoginUrl",
+  async (reqData, { rejectWithValue }) => {
+    try {
+      const sportMatchList = await sportServices.casinoLogin(reqData);
+      return sportMatchList;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 
 const sportSlice = createSlice({
   name: "sport",
@@ -43,7 +55,21 @@ const sportSlice = createSlice({
         state.error = action.payload;
         state.sportMatchList = [];
       })
-      
+      .addCase(casinoLogin.pending, (state) => {
+        state.loading = true;
+        state.sportMatchList = [];
+      })
+      .addCase(casinoLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.loggedIn = true;
+        state.casinoData = action.payload?.data;
+      })
+      .addCase(casinoLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.casinoData = [];
+      })
+
   },
 });
 

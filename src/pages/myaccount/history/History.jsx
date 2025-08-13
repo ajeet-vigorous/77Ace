@@ -1,10 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getBetListfunc } from '../../../redux/reducers/user_reducer';
+import { useDispatch } from 'react-redux';
 
 const History = () => {
   const [activeTab, setActiveTab] = useState("1 Day");
   const tabs = ["1 Day", "7 Day", "30 Day"];
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const reqData = {
+      fancyBet: true,
+      oddsBet: true,
+      casinoBet: true,
+      isDeleted: false,
+     
+    };
+    dispatch(getBetListfunc(reqData))
+  },[])
 
   return (
     <div className="w-full ">

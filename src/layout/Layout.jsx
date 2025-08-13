@@ -22,6 +22,7 @@ const Layout = () => {
     "/history",
     "/download",
     "/paymentcollectionhistory",
+    "/iframe",
   ].includes(location.pathname);
   const [sidebarOpen, setSidebarOpen] = useState({
     mainSidebarOpen: false,
@@ -42,6 +43,7 @@ const Layout = () => {
 
   return (
     <div className="flex flex-col  h-screen justify-center items-center bg-[#181F2F]">
+      
     <div
   className="w-full min-h-screen flex flex-col sm:max-w-[500px] mx-auto"
   style={{

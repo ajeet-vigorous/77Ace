@@ -62,6 +62,52 @@ async function getUserStatement(data) {
     }
   }
 
+  
+
+
+    async function depositeRequest (data) {
+    try {
+      const user = await apiCall("POST", "website/depositReq",data);
+  
+     
+    if (user) {
+      return user;
+    }
+    } catch (error) {
+      console.error("User Bank Details error:", error);
+      return Promise.reject(error);
+    }
+  }
+
+
+  async function saveAccountDetails (data) {
+    try {
+      const user = await apiCall("POST", "website/saveAccountDetails",data);
+  
+     
+    if (user) {
+      return user;
+    }
+    } catch (error) {
+      console.error("User Bank Details error:", error);
+      return Promise.reject(error);
+    }
+  }
+
+  async function getAccountDetailsofClient () {
+    try {
+      const user = await apiCall("POST", "website/getAccountDetailsOfClient");
+  
+     
+    if (user) {
+      return user;
+    }
+    } catch (error) {
+      console.error("User Bank Details error:", error);
+      return Promise.reject(error);
+    }
+  }
+
   async function userUpdate (data) {
     try {
       const user = await apiCall("PATCH", "user/userUpdate", data);
@@ -86,6 +132,19 @@ async function getUserStatement(data) {
     }
   }
   
+  async function withDrawRequest (data) {
+    try {
+      const user = await apiCall("POST", "website/withdrawReq",data);
+  
+     
+    if (user) {
+      return user;
+    }
+    } catch (error) {
+      console.error("User Bank Details error:", error);
+      return Promise.reject(error);
+    }
+  }
 
 
   export const userServices = {
@@ -95,4 +154,8 @@ async function getUserStatement(data) {
     getUserBalance,
     getBankDetailsByUserId,
     getDomainSettings,
+    depositeRequest,
+    saveAccountDetails,
+    getAccountDetailsofClient,
+    withDrawRequest,
   }

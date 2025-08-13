@@ -12,6 +12,8 @@ import Download from '../../pages/myaccount/download/Download'
 import PaymentCollectionHistory from '../../pages/myaccount/paymentcollectionhistory/PaymentCollectionHistory'
 import SignUp from '../../pages/creadentialPage/SignUp'
 import Earn from '../../earn/Earn'
+import IframeCasino from '../../pages/iframe/IframeCasino'
+
 
 
 
@@ -33,6 +35,7 @@ const AppContent = () => {
     <Route path='/signup' element={<SignUp />} />
     <Route path='/download' element={<Download />} />
     <Route path='/earn' element={<Earn />} />
+   
 
     <Route path='/paymentcollectionhistory' element={<PaymentCollectionHistory />} />         
     </Routes>

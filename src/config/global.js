@@ -10,7 +10,7 @@ export const sidebarJson = {
     {
       name:"VIP",
       icon:"/sidebar/vip.webp",
-      path:"/vip"
+      path:"/promo"
     },
     {
       name:"Earn Money",
@@ -505,14 +505,14 @@ export const footerImages = [
     id:"2"
   },
   {
-    providerName: "",
-    img:"/footerImg/nexo-4.webp",
+    providerName: "DC",
+    img:"/footerImg/dc casino.webp",
     id:"4"
   },
 
   {
-
-    img:"/footerImg/nexo-5.webp",
+    providerName: "AWC",
+    img:"/footerImg/awc.webp",
     id:"5"
   },
   {
@@ -523,36 +523,43 @@ export const footerImages = [
 
 
   {
-    img:"/footerImg/nexo-8.webp",
+    providerName: "KINGMIDAS",
+    img:"/footerImg/kingmidas.webp",
     id:"8"
   },
 
  
 
   {
-    img:"/footerImg/nexo-12.webp",
+    providerName: "BETGAMES",
+    img:"/footerImg/betgames.webp",
     id:"12"
   },
   {
-    img:"/footerImg/nexo-13.webp",
+    providerName: "SUNO",
+    img:"/footerImg/suno.webp",
     id:"13"
   },
   {
-    img:"/footerImg/nexo-16.webp",
+    providerName: "CRASH88",
+    img:"/footerImg/crash88.webp",
     id:"16"
   },
   {
-    img:"/footerImg/nexo-19.webp",
+    providerName: "SAP",
+    img:"/footerImg/sap.webp",
     id:"19"
   },
   {
-    img:"/footerImg/nexo-20.webp",
+    providerName: "RG",
+    img:"/footerImg/rg.webp",
     id:"20"
   },
-  {
-    img:"/footerImg/nexo-23.webp",
-    id:"23"
-  },
+  // {
+  //   providerName: "",
+  //   img:"/footerImg/nexo-23.webp",
+  //   id:"23"
+  // },
 
   
 
@@ -560,51 +567,59 @@ export const footerImages = [
 
 
 export const addcashJson =[
+
   {
-    name:"channel-1",
-    img:"/sidebar/addcash/deposit1.a1d4706b.webp",
+    name:"paytm",
+    img:'/paymentimg/logo-2.587648a0.png',
     eta:"5",
     range:'100-50000',
     id:"1"
   },
   {
-    name:"channel-2",
-    img:"/sidebar/addcash/deposit2.fe15ed7f.webp",
+    name:"bhimUpi",
+    img:'/paymentimg/bhimupi.png',
     eta:"5",
     range:'100-50000',
     id:"2"
   },
   {
-    name:"channel-3",
-    img:"/sidebar/addcash/deposit3.db4d0e05.webp",
+    name:"phonePay",
+    img:'/paymentimg/phonepe-1.svg',
     eta:"5",
     range:'100-50000',
     id:"3"
+  },
+  {
+    name:"googlePay",
+    img:'/paymentimg/Google_Pay_Logo.svg.png',
+    eta:"5",
+    range:'100-50000',
+    id:"4"
   },
 ]
 
 
 export const addPaymentBanks = [
   {
-    name:'PAYTM',
+    name:'paytm',
     img:'/paymentimg/logo-2.587648a0.png',
     id:'1'
   },
   {
-    name:'bank',
-    img:'/paymentimg/logo-3.14cffffc.png',
+    name:'bhimUpi',
+    img:'/paymentimg/bhimupi.png',
     id:'2'
   },
   {
-    name:'UPI',
-    img:'/paymentimg/logo-1.e9681612.png',
+    name:'phonePay',
+    img:'/paymentimg/phonepe-1.svg',
     id:'3'
   },
 
  
   {
-    name:'icici',
-    img:'/paymentimg/logo-4.3e4989db.png',
+    name:'googlePay',
+    img:'/paymentimg/Google_Pay_Logo.svg.png',
     id:'4'
   },
  

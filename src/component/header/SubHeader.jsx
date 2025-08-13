@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import useIntCasinoCategoryList from "../../hook/useIntCasinoCategoryList";
 
 
@@ -10,7 +10,19 @@ const menuItems = [
 
 const SubHeader = () => {
   const navigate = useNavigate();
-  const [seletedTab , setSelectedTab] = useState('1');
+  const location = useLocation();
+ 
+  const [seletedTab, setSelectedTab] = useState(() => {
+  
+    return localStorage.getItem("selectedTab") || "1";
+  });
+
+  useEffect(() => {
+   
+    localStorage.setItem("selectedTab", seletedTab);
+  }, [seletedTab]);
+
+  
 
 
 

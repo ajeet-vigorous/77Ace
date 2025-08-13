@@ -24,7 +24,7 @@ const AddCash = () => {
   }, [location.state]);
     
   return (
-    <div className="w-ful p-6 ">
+    <div className="w-ful p-6  ">
        <div className='flex px-3 rounded-[5px] items-center justify-start gap-40'>
        <img onClick={() => navigate(-1)} className='cursor-pointer w-[35px] h-[35px]' src="/backbutton/back-button.webp" alt="" />    
        <span className='text-white text-[19px] font-semibold'>{screen}</span>    
@@ -53,9 +53,14 @@ const AddCash = () => {
     
         
        </div>
+       
 
+
+        
+        <div className="overflow-auto h-[calc(100vh-100px)] hide-scrollbar">
       <PaymentScreen paymentScreen={paymentScreen} setPaymentScreen={setPaymentScreen} activeChannel={activeChannel} setActiveChannel={setActiveChannel} amount={amount} setAmount={setAmount} amounts={amounts} addcashJson={addcashJson}/>
       <Withdraw paymentScreen={paymentScreen} setPaymentScreen={setPaymentScreen} activeChannel={activeChannel} setActiveChannel={setActiveChannel} amount={amount} setAmount={setAmount} amounts={amounts} addcashJson={addcashJson}/>
+    </div>
     </div>
   
   )

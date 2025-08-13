@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { domainSettings } from './redux/reducers/user_reducer'
 import { useEffect } from 'react'
 import { domainName } from './config/Auth'
+import IframeCasino from './pages/iframe/IframeCasino'
 
 
 
@@ -32,6 +33,7 @@ function App() {
           <Routes>
            
             <Route path="*" element={<Layout />} />
+            <Route path='/iframe/:gameId' element={<IframeCasino />} />
           </Routes>
         </BrowserRouter>
       </BalanceProvider>

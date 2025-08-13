@@ -14,7 +14,20 @@ async function getSportmatchList(data) {
     }
   }
 
+async function casinoLogin(data) {
+    try {
+        const response = await apiCall("POST", "user/casinoLoginUrl", data);
+        if (response) {
+            return response;
+          }
+    } catch (error) {
+      console.error("user Statement List", error);
+      return Promise.reject(error);
+    }
+  }
+
 
   export const sportServices = {
-    getSportmatchList
+    getSportmatchList,
+    casinoLogin
   }

@@ -46,6 +46,34 @@ export const domainSettings = createAsyncThunk(
   }
 );
 
+export const depositeRequest = createAsyncThunk(
+  "user/depositeRequest",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const user = await userServices.depositeRequest(payload);
+
+      return user;
+    } catch (error) {
+
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const saveAccountDetails = createAsyncThunk(
+  "user/saveAccountDetails",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const user = await userServices.saveAccountDetails(payload);
+
+      return user;
+    } catch (error) {
+
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 
 export const getClientExposure = createAsyncThunk(
   "sports/getClientExposure",
@@ -104,6 +132,33 @@ export const getBankDetailsByUserId = createAsyncThunk(
   }
 );
 
+export const getAccountDetailsofClient = createAsyncThunk(
+  "website/getAccountDetailsofClient",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await userServices.getAccountDetailsofClient();
+      // message.success(user?.message, 2);
+      return response;
+    } catch (error) {
+      // message.error(error?.data?.message, 2);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const  withDrawRequest = createAsyncThunk(
+  "user/withDrawRequest",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const user = await userServices.withDrawRequest(payload);
+
+      return user;
+    } catch (error) {
+
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -209,6 +264,51 @@ const userSlice = createSlice({
         state.domainSettings = action.payload;
       })
       .addCase(domainSettings.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(depositeRequest.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(depositeRequest.fulfilled, (state, action) => {
+        state.loading = false;
+        state.depositeRequest = action.payload;
+      })
+      .addCase(depositeRequest.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(saveAccountDetails.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(saveAccountDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.saveAccountDetails = action.payload;
+      })
+      .addCase(saveAccountDetails.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getAccountDetailsofClient.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAccountDetailsofClient.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getAccountDetails = action.payload;
+      })
+      .addCase(getAccountDetailsofClient.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(withDrawRequest.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(withDrawRequest.fulfilled, (state, action) => {
+        state.loading = false;
+        state.withDrawRequest = action.payload;
+      })
+      .addCase(withDrawRequest.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
