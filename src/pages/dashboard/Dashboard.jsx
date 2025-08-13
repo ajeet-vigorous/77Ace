@@ -60,7 +60,9 @@ const Dashboard = () => {
           </marquee>
         </div>
       </div>
+  
       <SliderComponent sliderData={sliderData} />
+    
 
       <div className="w-[98%] hide-scrollbar overflow-x-auto cursor-pointer flex gap-2 px-5 pt-4">
         {casinoTab.map((item, index) => {
@@ -88,7 +90,7 @@ const Dashboard = () => {
         />
         {casinoTab?.find((item) => item.casinoName === activeTab).name}
       </div>}
-      <div className="grid grid-cols-4 gap-x-3 gap-y-10 px-5">
+      <div className="grid grid-cols-4  gap-x-3 gap-y-10 px-5">
         {activeTab !== "allGames"
           ? intGrupCsnoList?.[activeTab]?.map((item, index) => {
               return (
@@ -97,9 +99,9 @@ const Dashboard = () => {
                     handleGameClick(item);
                   }}
                   key={index}
-                  className="cursor-pointer h-[123px]  rounded-[5px]"
+                  className="cursor-pointer sm:h-[125px]  rounded-[5px]"
                 >
-                  <img className="w-full rounded-[5px] h-full"  src={item.urlThumb} alt={item.gameName} />
+                  <img className="sm:w-full md:w-[90%] rounded-[5px] h-[88%] sm:h-full"  src={item.urlThumb} alt={item.gameName} />
                   <div className="text-white flex items-center justify-center text-[14px] font-semibold">
                     {item.gameName}
                   </div>
@@ -113,9 +115,9 @@ const Dashboard = () => {
                   handleGameClick(item);
                 }}
                 key={index}
-                className="cursor-pointer mt-4 h-[125px] rounded-[5px]"
+                className="cursor-pointer mt-4  sm:h-[125px] rounded-[5px]"
               >
-                <img className="w-full rounded-[5px] h-full"  src={item.urlThumb} alt={item.gameName} />
+                <img className="sm:w-full md:w-[90%] rounded-[5px] h-[88%] sm:h-full"  src={item.urlThumb} alt={item.gameName} />
                 <div className="text-white flex items-center justify-center text-[14px] font-semibold">
                   {item.gameName}
                 </div>

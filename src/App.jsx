@@ -15,12 +15,16 @@ import IframeCasino from './pages/iframe/IframeCasino'
 
 function App() {
   const dispatch = useDispatch();
+   
 
   useEffect(() => {
     const payload = {
       domainName: domainName,
-    };
-    dispatch(domainSettings(payload));
+    };   
+    
+      dispatch(domainSettings(payload));
+  
+    
   }, []);
 
 

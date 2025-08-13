@@ -117,7 +117,7 @@ const PaymentScreen = ({
                       </div>
                     </div>
 
-            {Object.keys(domainSetting?.upi)?.map((items) => {
+            {domainSetting && Object.keys(domainSetting?.upi)?.map((items) => {
               const bank = addPaymentBanks?.find((item) => item.name === items);
               return addcashJson
                 ?.filter((item) => item.name === items)
@@ -165,7 +165,7 @@ const PaymentScreen = ({
       )}
       {paymentScreen === "addcash" && (
         <div className="grid grid-cols-4 mt-8">
-          {Object.keys(domainSetting?.upi)?.map((items) => {
+          {domainSetting && Object.keys(domainSetting?.upi)?.map((items) => {
             return addPaymentBanks
               ?.filter((item) => item.name === items)
               ?.map((data) => {

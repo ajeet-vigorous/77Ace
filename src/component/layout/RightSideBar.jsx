@@ -32,6 +32,9 @@ const hanldeLogout = () => {
   localStorage.removeItem('oneBetAmount');
   localStorage.removeItem('oneClickStatus');
   localStorage.removeItem('dashboardModalOpen');
+ 
+  localStorage.removeItem('selectedTab');
+
   
   
   

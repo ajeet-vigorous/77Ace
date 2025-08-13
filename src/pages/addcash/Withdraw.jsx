@@ -58,8 +58,9 @@ const Withdraw = ({paymentScreen}) => {
 
             <div className='text-[13px] pt-7 pb-4 text-white'>Withdrawal Amount (200-20,000 Rs)</div>
 
+<div className='px-1'>
             <input  value={amount} onChange={(e) => {setAmount(e.target.value);setError({amountError:''})}} type="number" placeholder='Please enter your Withdrawal Amount' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
-               
+            </div>
                {
                 error.amountError && (
                     <div className='text-red-500 text-[12px]'>

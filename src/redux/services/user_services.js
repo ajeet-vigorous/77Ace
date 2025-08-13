@@ -21,9 +21,9 @@ async function getUserStatement(data) {
   
       if (user) {
   
-        localStorage.setItem('clientBalance', JSON.stringify(user.data.coins));
-        localStorage.setItem('clientExposure', JSON.stringify(user.data.exposure));
-        localStorage.setItem('clientProfitLoss', JSON.stringify(user.data.profitLoss));
+        localStorage.setItem("clientBalance", JSON.stringify(+user?.data?.coins));
+        localStorage.setItem('clientExposure', JSON.stringify(+user?.data?.exposure));
+        localStorage.setItem('clientProfitLoss', JSON.stringify(+user?.data?.profitLoss));
         return user;
       }
     } catch (error) {
@@ -48,14 +48,21 @@ async function getUserStatement(data) {
   }
 
   async function getDomainSettings (data) {
+    const clientdomainSetting = JSON.parse(localStorage.getItem('clientdomainSetting'));
+    let user;
     try {
-      const user = await apiCall("POST", "website/domainSettingByDomainName",data);
-  
+      if(clientdomainSetting){
+        user = clientdomainSetting;
+      }
+      else{
+        const response = await apiCall("POST", "website/domainSettingByDomainName",data);
+        localStorage.setItem('clientdomainSetting', JSON.stringify(response.data));
+        user = response;
+      }
+
      
-    if (user) {
-      localStorage.setItem('clientdomainSetting', JSON.stringify(user.data));
+    
       return user;
-    }
     } catch (error) {
       console.error("User Bank Details error:", error);
       return Promise.reject(error);

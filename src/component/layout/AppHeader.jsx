@@ -2,12 +2,25 @@ import { MdCurrencyRupee } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { intGrupCsnoList } from "../../redux/reducers/casino.reducer";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getUserBalance } from "../../redux/reducers/user_reducer";
 
 const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
   const navigate = useNavigate()
   const token = localStorage.getItem("token");
-  const clientBalance = localStorage.getItem("clientBalance");
+  const clientBalance = localStorage.getItem("clientBalance") || 0;
+  console.log(clientBalance,"clientBalance");
+  const [rotate, setRotate] = useState(false);
+  const handleRotate = () => {
+    setRotate(true);
+    setTimeout(() => {
+      setRotate(false);
+    }, 3000);
+   dispatch(getUserBalance())
+
+  }
+
+  console.log(rotate,"rotate");
 const dispatch = useDispatch();
  
 
@@ -45,7 +58,7 @@ const dispatch = useDispatch();
           <div className="bg-[#611A1C] w-[170px] flex justify-between py-[2.5px] px-[3px] items-center h-[41px] rounded-xl">
             <div className="flex justify-center items-center gap-0.5 pl-1 text-white"><MdCurrencyRupee size={13}/> {Number(clientBalance).toFixed(2)}</div>
             <div className="flex gap-2 h-full justify-around  items-center">
-            <img src="/header/reset.webp" alt=""  className="w-[20px] h-[20px]"/>
+            <img src="/header/reset.webp" alt="" onClick={()=>{handleRotate()}}    className={`w-[20px] h-[20px] transition-transform duration-150 ${rotate ? 'rotate-180' : 'rotate-0'}`}/>
             <img onClick={()=>{navigate('/addcash')}} src="/header/deposit.webp" alt=""  className="w-[35px] h-full"/>
             </div>           
           </div>

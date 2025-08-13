@@ -4,10 +4,10 @@ const GrandExchangeSettings = {
   logo: "/logo/grandexchange.png",
   SOCKET_URL: "https://socket.trovetown.co/",
   // apiurl: "https://api.plx99.com/v1/",
-  // apiurl: "https://apidiamond.trovetown.co/v1/",
+  apiurl: "https://apidiamond.trovetown.co/v1/",
 
 // apiurl:"https://api.bmexch.com/v1/",
-apiurl:"https://api.10xbpexch.com/v1/",
+// apiurl:"https://api.10xbpexch.com/v1/",
  
  
  

@@ -5,6 +5,7 @@ import { domainName } from '../../../config/Auth';
 import { useDispatch } from 'react-redux';
 import { updatePassword } from '../../../redux/reducers/auth.reducer';
 import { userUpdate } from '../../../redux/reducers/user_reducer';
+import { message } from 'antd';
 const PersonalInfo = () => {
     const navigate = useNavigate();
     const [edit,setEdit] = useState('');
@@ -54,10 +55,21 @@ const PersonalInfo = () => {
             confirmPassword :confirmPassword
         }
     dispatch(updatePassword(userData)).then(() => {
+        message.success('Password updated successfully');
         setEdit('');
         setPassword('');
         setNewPassword('');
         setConfirmPassword('');
+        localStorage.removeItem(`user_info_${domainName}`);
+        localStorage.removeItem('token');
+        localStorage.removeItem('clientBalance');
+        localStorage.removeItem('betSlipData');
+        localStorage.removeItem('clientbetChipsData');
+        localStorage.removeItem('oneBetAmount');
+        localStorage.removeItem('oneClickStatus');
+        localStorage.removeItem('dashboardModalOpen');  
+        localStorage.removeItem('clientdomainSetting');             
+        navigate('/'); 
     })
 }
     

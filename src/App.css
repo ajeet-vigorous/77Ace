@@ -6,3 +6,36 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;                /* Chrome, Safari, Opera */
   }
+
+  /* .slick-slider {
+    position: relative; 
+  }
+ .slick-dots li {
+  margin: 0; 
+}
+
+  .slick-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%); 
+    display: flex !important;
+    align-items: center;
+    gap: 1px;
+    overflow-x: hidden;
+  }
+ 
+  .slick-dots li button:before {
+    font-size: 7px;
+    color: black !important;
+    opacity: 1 !important;
+  }
+ 
+  .slick-dots li.slick-active button:before {
+    color: white !important;
+    opacity: 1 !important;
+  }
+
+  .slick-dots li {
+    margin: 0; 
+  } */
