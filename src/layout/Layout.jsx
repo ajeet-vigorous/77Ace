@@ -23,6 +23,7 @@ const Layout = () => {
     "/download",
     "/paymentcollectionhistory",
     "/iframe",
+    "/depositwithdrawal",
   ].includes(location.pathname);
   const [sidebarOpen, setSidebarOpen] = useState({
     mainSidebarOpen: false,

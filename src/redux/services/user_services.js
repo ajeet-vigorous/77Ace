@@ -115,6 +115,19 @@ async function getUserStatement(data) {
     }
   }
 
+  async function getDepositWithdrawList(data) {
+    try {
+      const user = await apiCall("POST", "website/getDepositWithdrawList", data);
+  
+      if (user) {
+        return user;
+      }
+    } catch (error) {
+      console.error("Account Statement error:", error);
+      return Promise.reject(error);
+    }
+  }
+
   async function userUpdate (data) {
     try {
       const user = await apiCall("PATCH", "user/userUpdate", data);
@@ -165,4 +178,5 @@ async function getUserStatement(data) {
     saveAccountDetails,
     getAccountDetailsofClient,
     withDrawRequest,
+    getDepositWithdrawList,
   }

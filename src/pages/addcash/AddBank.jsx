@@ -66,6 +66,8 @@ const AddBank = () => {
             dispatch(getAccountDetailsofClient()).then((res)=>{
                 setBankDetails(res.payload.data);
                 setBankForm(false);
+                setAccountForm(false);
+               
             })
         })
     }

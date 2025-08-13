@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { userServices } from "../services/user_services";
+import { message } from "antd";
 
 
 const initialState = {
@@ -65,6 +66,20 @@ export const saveAccountDetails = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const user = await userServices.saveAccountDetails(payload);
+      message.success(user?.message, 2);
+      return user;
+    } catch (error) {
+      message.error(error?.data?.message, 2);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getDepositWithdrawList = createAsyncThunk(
+  "user/getDepositWithdrawList",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const user = await userServices.getDepositWithdrawList(payload);
 
       return user;
     } catch (error) {
@@ -95,10 +110,10 @@ export const userUpdate = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const user = await userServices.userUpdate(payload);
-
+      message.success(user?.message, 2);
       return user;
     } catch (error) {
-
+      message.error(error?.data?.message, 2);
       return rejectWithValue(error.message);
     }
   }
@@ -154,7 +169,7 @@ export const  withDrawRequest = createAsyncThunk(
 
       return user;
     } catch (error) {
-
+      message.error(error?.data?.message, 2);
       return rejectWithValue(error.message);
     }
   }
@@ -309,6 +324,17 @@ const userSlice = createSlice({
         state.withDrawRequest = action.payload;
       })
       .addCase(withDrawRequest.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getDepositWithdrawList.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getDepositWithdrawList.fulfilled, (state, action) => {
+        state.loading = false;
+        state.depositWithdrawList = action.payload.data;
+      })
+      .addCase(getDepositWithdrawList.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
