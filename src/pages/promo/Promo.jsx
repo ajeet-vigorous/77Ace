@@ -7,6 +7,7 @@ import Viprewards from './promopage/viprewards';
 import EarnMoney from './promopage/EarnMoney';
 import RechargeExtra from './promopage/RechargeExtra';
 import LuckyWheel from './promopage/LuckyWheel';
+import Vip from './vip/Vip';
 
 const Promo = () => {
     const location = useLocation();
@@ -20,9 +21,10 @@ const Promo = () => {
      
     }
   }, [location.state]);
+
     
   return (
-    <div className='w-full'>
+    <div className='w-full '>
     <div className="w-full px-5 ">
       
        <div className='grid   bg-white/5 backdrop-blur-sm h-[56px] grid-cols-2 items-center justify-center ' style={{boxShadow:'0.2px -0.2px  white'}}>
@@ -67,6 +69,13 @@ const Promo = () => {
        }
        {
         activeScreen === 'rechargeextra' && <RechargeExtra />
+       }
+
+       {
+        activeScreen === 'vip' &&
+        <div className='w-full h-screen overflow-y-auto hide-scrollbar'>
+         <Vip />
+         </div>
        }
     </div>
   

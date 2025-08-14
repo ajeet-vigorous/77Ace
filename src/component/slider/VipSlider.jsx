@@ -4,34 +4,33 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// const NextArrow = ({ onClick }) => (
-//   <div
-//     onClick={onClick}
-//     className="absolute -right-4 top-1/2 -translate-y-1/2 cursor-pointer z-10"
-//   >
-//     <FaChevronRight className="text-white text-3xl drop-shadow-lg" />
-//   </div>
-// );
+const NextArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute -right-4 top-[60%] -translate-y-1/2 cursor-pointer z-10"
+  >
+    <FaChevronRight className="text-white text-lg drop-shadow-lg" />
+  </div>
+);
 
-// const PrevArrow = ({ onClick }) => (
-//   <div
-//     onClick={onClick}
-//     className="absolute -left-4 top-1/2 -translate-y-1/2 cursor-pointer z-10"
-//   >
-//     <FaChevronLeft className="text-white text-3xl drop-shadow-lg" />
-//   </div>
-// );
+const PrevArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute -left-5 top-[60%] -translate-y-1/2 cursor-pointer z-10"
+  >
+    <FaChevronLeft className="text-white text-lg drop-shadow-lg" />
+  </div>
+);
 
-const SliderComponent = ({ sliderData }) => {
+const VipSlider = ({ sliderData }) => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 100,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false, 
-    nextArrow: null,
-    prevArrow: null,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (
@@ -51,4 +50,4 @@ const SliderComponent = ({ sliderData }) => {
   );
 };
 
-export default SliderComponent;
+export default VipSlider;

@@ -46,7 +46,8 @@ const PromoPage = ({setScreen}) => {
     {
             promoJson.map((item)=>{
                 return(
-                    <div onClick={()=>setScreen(item.screen)} style={{backgroundImage:`url(${item.image})`,backgroundSize:'cover',backgroundPosition:'center'}} className='w-full  rounded-[10px] relative h-[200px] ' key={item.id}>
+                    <div onClick={()=>setScreen(item.screen)}  className='w-full  rounded-[10px] relative h-[140px] sm:h-[200px] ' key={item.id}>
+                        <img src={item.image} className='w-full h-full rounded-[10px] ' alt="" />
                      
                        <div className='text-white text-[18px] p-2 pl-6 bg-[#2F2929] w-full absolute bottom-0 rounded-bl-[10px] rounded-br-[10px] font-semibold'>{item.description}</div>
                       

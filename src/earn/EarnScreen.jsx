@@ -26,8 +26,8 @@ const EarnScreen = ({setCopyUrl, copyUrl}) => {
             </div>
             <div className='text-white text-[16px] gap-2  mt-4 flex justify-start items-center font-semibold'>
                <img  className='w-[24px] h-[24px] ' src="/dashboard/earn/newEarn-icon9.webp"  alt="" />
-               <div onClick={() => {copyToClipBoard()}} className='flex items-center px-4  bg-[#261C1C] flex-1'>
-                <div className='p-1  flex-1'>{location}/{user?.data?.referralCode}</div>
+               <div onClick={() => {copyToClipBoard()}} className='flex items-center px-4 w-full overflow-auto  bg-[#261C1C] flex-1'>
+                <div className='p-1 w-full overflow-hidden  flex-1'>{location}/{user?.data?.referralCode}</div>
                 <img  className='w-[15px] h-[15px] ' src="/dashboard/earn/newEarn-icon1.webp"  alt="" />
                </div>
             </div>

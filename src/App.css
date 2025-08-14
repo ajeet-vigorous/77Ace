@@ -7,7 +7,7 @@
     display: none;                /* Chrome, Safari, Opera */
   }
 
-  /* .slick-slider {
+  .slick-slider {
     position: relative; 
   }
  .slick-dots li {
@@ -17,11 +17,11 @@
   .slick-dots {
     position: absolute;
     bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%); 
-    display: flex !important;
+    /* left: 50%; */
+    /* transform: translateX(-50%);  */
+    /* display: flex !important; */
     align-items: center;
-    gap: 1px;
+    /* gap: 1px; */
     overflow-x: hidden;
   }
  
@@ -38,4 +38,4 @@
 
   .slick-dots li {
     margin: 0; 
-  } */
+  }

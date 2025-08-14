@@ -22,7 +22,7 @@ const DepositWithdrawal = () => {
         })
     },[depositWithdrawList]);
 
-    console.log(depositWithdrawList);
+  
       const [activeTab, setActiveTab] = useState("1 Day");
       const tabs = ["1 Day", "7 Day", "30 Day"];
     const dispatch = useDispatch();
@@ -134,21 +134,23 @@ const DepositWithdrawal = () => {
         ))}
       </div>
       
-      <div className="w-full overflow-auto">
+      <div className="w-full px-6 py-2 overflow-auto">
 <table className="w-full">
-    <thead className="bg-gray-100 text-[14px] w-full" >
+    <thead className="bg-transparent whitespace-nowrap text-white text-center backdrop-blur-sm text-[14px] w-full" >
         <tr>
-            <th>Amount</th>
-            <th>Utr Number</th>
+            <th> Amount</th>
+            <th>Utr Number</th>       
+            <th>Remark</th>
             <th>Time</th>
         </tr>
     </thead>
-    <tbody className="bg-white w-full text-[14px]">
+    <tbody className="bg-white/5 whitespace-nowrap backdrop-blur-sm text-white text-center w-full text-[14px]">
         {fileredData[withdrawDepositTab]?.map((item, index) => (
             <tr key={index}>
-                <td>{item.amount}</td>
-                <td>{item.utrNumber}</td>
-                <td>{item.time}</td>
+                <td className="px-6 py-2 whitespace-nowrap border-b">{item.amount}</td>
+                <td className="px-6 py-2 whitespace-nowrap border-b">{item.utrNo}</td>                
+                <td className="px-6 py-2 whitespace-nowrap border-b">{item.remark || '-'}</td>
+                <td className="px-6 py-2 whitespace-nowrap border-b">{new Date(item.createdAt).toLocaleString()}</td>
             </tr>
         ))}
     </tbody>
