@@ -92,6 +92,7 @@ const MyAccount = () => {
             LOG OUT
 
         </div>
+        <div className='pb-44'></div>
 
     </div>
   )

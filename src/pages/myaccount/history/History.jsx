@@ -206,7 +206,7 @@ const History = () => {
       </div>
 
       {/* Content */}
-      <div className="w-full px-2 py-2 mt-1 overflow-auto">
+      <div className="w-full px-2 py-2 mt-1 hide-scrollbar overflow-auto">
 <table className="w-full">
     <thead className="bg-transparent whitespace-nowrap text-white text-center backdrop-blur-sm text-[14px] w-full" >
         <tr>
