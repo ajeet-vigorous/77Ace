@@ -175,6 +175,20 @@ export const  withDrawRequest = createAsyncThunk(
   }
 );
 
+export const  uploadScreenShot = createAsyncThunk(
+  "user/uploadScreenShot",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const user = await userServices.uploadScreenShot(payload);
+
+      return user;
+    } catch (error) {
+      message.error(error?.data?.message, 2);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -335,6 +349,17 @@ const userSlice = createSlice({
         state.depositWithdrawList = action.payload.data;
       })
       .addCase(getDepositWithdrawList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(uploadScreenShot.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(uploadScreenShot.fulfilled, (state, action) => {
+        state.loading = false;
+        state.screenShotImg = action.payload.data;
+      })
+      .addCase(uploadScreenShot.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

@@ -67,3 +67,49 @@ export const apiCall = async (method, path, payload) => {
         }
     }
 };
+export const apiCallForm = async (method, path, payload) => {
+    // if (import.meta.env.VITE_SECRET_KEY_DECREPT_FLAG && path !="user/login") {
+    //     const encryptedDataee = CryptoJS.AES.encrypt(JSON.stringify(payload), import.meta.env.VITE_SECRET_KEY_DECREPT).toString();
+    //      payload = {
+    //         data: encryptedDataee,
+    //         isEncruption: true
+    //     };
+    // }
+    try {
+        const response = await axios({
+            method,
+            url: baseUrl.BACKEND_URL + path,
+            data: payload,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                ...authHeader(),
+            },
+        });
+
+        if (response && response.data && response.data.dataEncrupt && response.data.dataEncrupt == true) {
+            if (response.data) {
+                let encruptedData = response.data.data
+                const bytes = CryptoJS.AES.decrypt(encruptedData, import.meta.env.VITE_SECRET_KEY
+                );
+                const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+                if (decryptedData && decryptedData!=null && decryptedData!=""  ) {
+                    response.data.data = JSON.parse(decryptedData) 
+                }
+            }
+        }
+
+        return response.data;
+    } catch (error) {
+        if (Number(error?.response?.data?.code) === 3 || Number(error?.response?.status) === 401) {
+            localStorage.clear();
+            window.location.href = '/login';
+        } else if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw new Error('No response received from the server');
+        } else {
+            console.error(error, "Error occurred during request setup");
+            throw new Error(error.message);
+        }
+    }
+};

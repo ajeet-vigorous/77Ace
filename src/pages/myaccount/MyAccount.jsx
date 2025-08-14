@@ -44,7 +44,7 @@ const MyAccount = () => {
                 <img src="sidebar/myaccount/user-deposit.webp" alt="" height={32} width={32}/>
                  <span className='text-[13px]'>Deposit</span>
                </div>
-               <div className="flex flex-col text-white justify-center  items-center">
+               <div onClick={() => navigate('/promo')} className="flex flex-col text-white justify-center  items-center">
                 <img src="sidebar/myaccount/user-promo.webp" alt="" height={32} width={32}/>
                  <span className='text-[13px]'>Promo</span>
                </div>
@@ -62,7 +62,7 @@ const MyAccount = () => {
         <div className='grid grid-cols-4  bg-[#2E3034] p-5 gap-12 rounded-[5px]'>
             <div onClick={()=>{navigate('/personalinfo')}} className='flex flex-col justify-center items-center cursor-pointer'>
             <img src="sidebar/myaccount/Personal.svg" alt="" height={38} width={38}/>
-            <span className='text-[13px] whitespace-nowrap text-white'>Personal Center</span>
+            <span className='text-[13px] ml-4 whitespace-nowrap text-white'>Personal Center</span>
             </div>
             <div onClick={()=>{navigate('/history')}} className='flex flex-col justify-center items-center cursor-pointer'>
             <img src="sidebar/myaccount/Recode.svg" alt="" height={38} width={38}/>
@@ -76,7 +76,7 @@ const MyAccount = () => {
             <img src="sidebar/myaccount/Bank.svg" alt="" height={38} width={38}/>
             <span className='text-[13px] whitespace-nowrap text-white'>Bank</span>
             </div>
-            <div className='flex flex-col gap-2 justify-center items-center cursor-pointer'>
+            <div onClick={()=>{navigate('/depositwithdrawal')}} className='flex flex-col gap-2 justify-center items-center cursor-pointer'>
             <img src="sidebar/myaccount/Order.svg" alt="" height={28} width={28}/>
             <span className='text-[13px] whitespace-nowrap text-white'>Order</span>
             </div>

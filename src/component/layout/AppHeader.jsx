@@ -49,10 +49,11 @@ const dispatch = useDispatch();
 
   return (
     <>
-      <div className="grid grid-cols-2 h-full justify-center items-center " >
+      <div className="grid sm:grid-cols-2 grid-cols-[0.3fr_1fr] h-full justify-center items-center " >
         <div className="flex gap-2 h-full justify-start  items-center !pl-[20px]">
           <img src="/header/btn.webp" onClick={handleSidebarToggle} alt="" className="w-[35px] h-[37px]"/>
-          <img src="/header/logo.webp" alt="" className="w-[105.5px] h-[32px]" />
+          <img onClick={()=>{ window.open('/', '_blank');}} src="/header/logo.webp" alt="" className="w-[105.5px] h-[32px] sm:block hidden" />
+          <img src="/header/logo-low.webp" alt="" className="!min-w-[50px] h-[32px] sm:hidden block" />
         </div>
         {token && <div className="flex gap-2 h-full justify-end  items-center !pr-[12px]">
           <div className="bg-[#611A1C] w-[170px] flex justify-between py-[2.5px] px-[3px] items-center h-[41px] rounded-xl">

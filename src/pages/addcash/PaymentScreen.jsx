@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { addPaymentBanks } from "../../config/global";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdCurrencyRupee } from "react-icons/md";
@@ -7,7 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   depositeRequest,
   getBankDetailsByUserId,
+  uploadScreenShot,
 } from "../../redux/reducers/user_reducer";
+import { toast } from "react-toastify";
+import { RxCross2 } from "react-icons/rx";
 
 const PaymentScreen = ({
   paymentScreen,
@@ -21,8 +24,64 @@ const PaymentScreen = ({
 }) => {
   const user = useSelector((state) => state.user);
   const [scannerUrl, setScannerUrl] = useState();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef(null);
+  const {screenShotImg} = useSelector((state) => state.user);
+  const handleRemoveFile = () => {
+    setSelectedFile(null);
+  
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  
+   
+    setError({ ...error, screenShotImgError: "" });
+  };
+
+
+ useEffect(() => {
+    setSelectedFile('');
+    setUtrNo("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    setAmount("");
+    setError({ amountError: "", utrNoError: "", screenShotImgError: "" });
+ }, [paymentScreen]);
+
+  const handleFileChange = (e) => {
+    setError({ ...error, screenShotImgError: "" });
+   
+   
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);     
+      try {
+        dispatch(uploadScreenShot(formData));
+        const toastId = toast.success("File uploaded successfully");
+        setTimeout(() => toast.dismiss(toastId), 1000);
+       
+        setSelectedFile(file);
+        
+        
+      } catch (error) {
+        const toastId = toast.error("Error uploading file:");
+        setTimeout(() => toast.dismiss(toastId), 1000);
+        console.error("Error uploading file:", error);
+      }
+    }    
+    else{
+      const formData = new FormData();
+      formData.append("image", file);  
+      dispatch(uploadScreenShot(formData));
+      setSelectedFile(null);
+      
+      
+    }
+  };
   const [utrNo, setUtrNo] = useState();
-  const [error, setError] = useState({ amountError: "", utrNoError: "" });
+  const [error, setError] = useState({ amountError: "", utrNoError: "", screenShotImgError: "" });
   const domainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,19 +103,35 @@ const PaymentScreen = ({
       setError({ utrNoError: "Please enter valid UTR No", amountError: "" });
       return;
     }
+    if (!screenShotImg||fileInputRef.current.value === "") {
+      setError({ screenShotImgError: "Please upload screen shot", amountError: "" });
+      return;
+    }
 
     const data = {
       amount: amount,
       utrNo: utrNo,
+      screenShotImg: screenShotImg,
     };
-    dispatch(depositeRequest(data));
+    dispatch(depositeRequest(data)).then((res)=>{
+      if(res){
+        setSelectedFile(null);
+        setUtrNo("");
+        fileInputRef.current.value = "";
+        setAmount("");
+        setPaymentScreen("addcash");
+      }
+      console.log(res);
+    });
   };
-
+ 
   return (
     <div className="">
       {" "}
+
       {paymentScreen === "addcash" && (
         <>
+
           <div className=" text-[16px] text-[#8A8888]  my-7">
             Choose a payment method
           </div>
@@ -180,6 +255,38 @@ const PaymentScreen = ({
       )}
       {paymentScreen === "addBalance" && (
         <>
+       {scannerUrl && <div className="flex flex-col">
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+            <span>UPI ID</span>
+          {domainSetting?.upi?.[scannerUrl]?.upiId}
+          </div>
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <span>Mobile No</span>
+          {domainSetting?.upi?.[scannerUrl]?.mobNo}
+          </div>
+
+        </div>}
+        {!scannerUrl && <div className="flex flex-col">
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+            <span>Branch Name</span>
+          {domainSetting?.account.branchName
+          }
+          </div>
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <span>Account Holder Name</span>
+          {domainSetting?.account.acHolderName}
+          </div>
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <span>Account No</span>
+          {domainSetting?.account.accountNumber}
+          </div>
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <span>IFSC Code</span>
+          {domainSetting?.account.ifscCode}
+          </div>
+          
+
+        </div>}
           <div className="flex justify-between my-5">
             <span className="text-[17px] font-semibold text-[#8A8888]">
               Payment Method
@@ -252,7 +359,28 @@ const PaymentScreen = ({
             />
           </div>
           <span className="text-red-500">{error.utrNoError}</span>
+          <div className="p-4">
+      {/* Upload Button */}
+      <label className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded cursor-pointer inline-block">
+        Upload File
+        <input
+          ref={fileInputRef}
+          type="file"
+          className="hidden"
+          onChange={(e)=>handleFileChange(e)}
+        />
+      </label>
 
+      {/* Show Selected File */}
+      {selectedFile && (
+        <div className="mt-2 flex items-center justify-between text-gray-300 text-sm">
+          Selected file: {selectedFile.name}
+          <button className="ml-2 cursor-pointer text-red-500 " onClick={()=>handleRemoveFile()}><RxCross2 size={20} />
+          </button>
+        </div>
+      )}
+      <div className="text-red-500">{error.screenShotImgError}</div>
+    </div>
           <button
             onClick={() => handleDepositeRequest()}
             className="w-full  mt-24 bg-gradient-to-t from-[#B81212] to-[#f56e65] text-white text-[16px] font-semibold rounded-[5px] py-2"

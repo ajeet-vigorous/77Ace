@@ -8,6 +8,7 @@ const DepositWithdrawal = () => {
     const [withdrawDepositTab, setwithdrawDepositTab] = useState('withdraw');
     const {depositWithdrawList} = useSelector((state) => state.user);
     
+    
     const [fileredData,setFileredData] = useState({
         deposit:[],
         withdraw:[]
@@ -72,15 +73,15 @@ const DepositWithdrawal = () => {
         const reqData = {
             fromDate: dateRange.startDate,
             toDate: dateRange.endDate,
-            pageNo: 1,
-            size: 10,
+            pageNo: '',
+            size: '',
             status: '',
           };
           dispatch(getDepositWithdrawList(reqData));
     }, [withdrawDepositTab,dateRange]);
   
 
-    console.log(dateRange);
+  
    
  
   return (
@@ -134,7 +135,7 @@ const DepositWithdrawal = () => {
         ))}
       </div>
       
-      <div className="w-full px-6 py-2 overflow-auto">
+      <div className="w-full px-1 py-2 overflow-auto">
 <table className="w-full">
     <thead className="bg-transparent whitespace-nowrap text-white text-center backdrop-blur-sm text-[14px] w-full" >
         <tr>

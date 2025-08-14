@@ -1,4 +1,4 @@
-import { apiCall } from "../../config/HTTP";
+import { apiCall, apiCallForm } from "../../config/HTTP";
 
 async function getUserStatement(data) {
     try {
@@ -166,6 +166,20 @@ async function getUserStatement(data) {
     }
   }
 
+  async function uploadScreenShot (data) {
+    try {
+      const user = await apiCallForm("POST", "website/fileUpload",data);
+  
+     
+    if (user) {
+      return user;
+    }
+    } catch (error) {
+      console.error("User Bank Details error:", error);
+      return Promise.reject(error);
+    }
+  }
+
 
   export const userServices = {
     getUserStatement,
@@ -179,4 +193,5 @@ async function getUserStatement(data) {
     getAccountDetailsofClient,
     withDrawRequest,
     getDepositWithdrawList,
+    uploadScreenShot
   }

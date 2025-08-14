@@ -70,7 +70,7 @@ const Dashboard = () => {
             <img
               key={index}
               onClick={() => setActiveTab(item.casinoName)}
-              className="w-[78px] h-[78px]"
+              className="sm:w-[78px] w-[55px] sm:h-[78px] h-[55px]"
               src={
                 activeTab === item.casinoName
                   ? item.activeIcon
