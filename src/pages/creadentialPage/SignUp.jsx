@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { IoIosLock } from "react-icons/io";
 import { MdPhoneAndroid } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { register } from "../../redux/reducers/auth.reducer";
 import { useDispatch } from "react-redux";
 const SignUp = () => {
+  const {referralCode} = useParams();
+  console.log(referralCode);
+  
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
@@ -39,6 +42,7 @@ const [errors, setErrors] = useState({ username: "", password: "" });
        const data = {
         username: username,
         password: password,
+        referralCode: referralCode,
         isClient: true,
         host: window.location.origin
       };
@@ -99,6 +103,19 @@ const [errors, setErrors] = useState({ username: "", password: "" });
            {errors.password && (
                <span className="text-red-500 text-[12px] mt-1 ml-4">{errors.password}</span>
              )}
+
+      <div className="flex items-center gap-2 mt-6  justify-center rounded-[12px] bg-[#261C1C]">
+             <IoIosLock className="text-[#8A8888] bg-[#261C1C] ml-4" size={27} />
+             <input
+             disabled
+               placeholder="Referral Code"
+               type="text"
+               className="w-full text-[15px] h-[44px]  rounded-r-[12px] bg-[#261C1C]  px-4  text-white"
+               value={referralCode}
+               
+             />
+             
+           </div>
       <div className="flex items-center  gap-2 my-6">
         <input
           type="checkbox"

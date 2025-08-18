@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiPlusCircle } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { withDrawRequest } from '../../redux/reducers/user_reducer'
+import { getAccountDetailsofClient, withDrawRequest } from '../../redux/reducers/user_reducer'
+import { useSelector } from 'react-redux'
 const Withdraw = ({paymentScreen}) => {
     const navigate = useNavigate();
     const [error,setError] = useState({
         amountError:'',
     });
     const clientBalance = JSON.parse(localStorage.getItem('clientBalance'));
+    const {getAccountDetails} = useSelector((state) => state.user);
    const amountDetail=[{name:'Withdrawal Amount',amount:clientBalance}]
     const [amount,setAmount] = useState();
    const dispatch = useDispatch();
@@ -21,8 +23,8 @@ const Withdraw = ({paymentScreen}) => {
             setError({amountError:'Please enter amount greater than 200'})
             return
         }
-        if(amount > 20000){
-            setError({amountError:'Please enter amount less than 20000'})
+        if(amount > Number(clientBalance).toFixed(2)){
+            setError({amountError:'Please enter amount less than ' + Number(clientBalance).toFixed(2)})
             return
         }
         const data = {
@@ -31,6 +33,11 @@ const Withdraw = ({paymentScreen}) => {
         dispatch(withDrawRequest(data))
         
     }
+
+    useEffect(() => {
+        dispatch(getAccountDetailsofClient())
+    },[])
+    console.log(getAccountDetails)
     return (
     <div className="">{
 
@@ -38,11 +45,11 @@ const Withdraw = ({paymentScreen}) => {
         <div className=' text-[16px] text-[#8A8888]  my-6'>
             <div className='grid grid-cols-2 bg-[#251C1C] rounded-[7px] p-1 items-center justify-between'>
                 <div className='flex flex-col gap-1 py-2 pl-10 border-r-[1px] border-[#494848]  items-center justify-center'>
-                    <span className='text-[16px] font-semibold text-white'>{clientBalance}</span>   
+                    <span className='text-[16px] font-semibold text-white'>{Number(clientBalance).toFixed(2)}</span>   
                     <span className='text-[16px] font-semibold text-[#8A8888]'>Cash Balance</span>
                 </div>
                 <div className='flex flex-col gap-1 py-2 pr-10   items-center justify-center'>
-                    <span className='text-[16px] font-semibold text-white'>{clientBalance}</span>
+                    <span className='text-[16px] font-semibold text-white'>{Number(clientBalance).toFixed(2)}</span>
                     <span className='text-[16px] font-semibold text-[#8A8888]'>Withdrawable</span>
                 </div>
             </div>
@@ -55,10 +62,31 @@ const Withdraw = ({paymentScreen}) => {
             <FiPlusCircle size={20} /> Add New Account
                 
             </div>
+            {getAccountDetails?.data && <>
+            <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+            <span>Bank Name</span>
+          {getAccountDetails?.data?.bankName}
+          </div>
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <span>Account Holder Name</span>
+          {getAccountDetails?.data?.accountHolder}
+          </div>
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <span>Account No</span>
+          {getAccountDetails?.data?.accountNumber}
+          </div>
+          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <span>IFSC Code</span>
+          {getAccountDetails?.data?.ifscCode}
+          </div>
+          </>
+          }
 
-            <div className='text-[13px] pt-7 pb-4 text-white'>Withdrawal Amount (200-20,000 Rs)</div>
 
-<div className='px-1'>
+            <div className='text-[13px] pt-7 pb-4 text-white'>Withdrawal Amount (200-{Number(clientBalance).toFixed(2)} Rs)</div>
+            
+
+           <div className='px-1'>
             <input  value={amount} onChange={(e) => {setAmount(e.target.value);setError({amountError:''})}} type="number" placeholder='Please enter your Withdrawal Amount' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
             </div>
                {

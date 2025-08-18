@@ -162,6 +162,9 @@ const History = () => {
 
  
   useEffect(() => {
+    if(!dateRange.startDate || !dateRange.endDate){
+      return
+    }
     const reqData = {
       fromDate: dateRange.startDate,
       toDate: dateRange.endDate,

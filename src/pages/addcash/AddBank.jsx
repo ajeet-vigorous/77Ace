@@ -63,12 +63,12 @@ const AddBank = () => {
      
         dispatch(saveAccountDetails(bankDetails)).then((res)=>{
             
-            dispatch(getAccountDetailsofClient()).then((res)=>{
+        dispatch(getAccountDetailsofClient()).then((res)=>{
                 setBankDetails(res.payload.data);
                 setBankForm(false);
                 setAccountForm(false);
                
-            })
+            })  
         })
     }
 

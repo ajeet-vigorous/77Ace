@@ -27,7 +27,7 @@ const AddCash = () => {
     <div className="w-ful p-6  ">
        <div className='flex px-3 rounded-[5px] items-center justify-start gap-40'>
        <img onClick={() => navigate(-1)} className='cursor-pointer w-[35px] h-[35px]' src="/backbutton/back-button.webp" alt="" />    
-       <span className='text-white text-[19px] font-semibold'>{screen}</span>    
+       <span className='text-white text-[19px] whitespace-nowrap  font-semibold'>{screen}</span>    
        </div>
        <div className='grid  mt-6 bg-white/5 backdrop-blur-sm h-[56px] grid-cols-2 items-center justify-center ' style={{boxShadow:'0.2px -0.2px  white'}}>
         <div className='flex items-center  h-full justify-center cursor-pointer' onClick={() => {setActiveTab('addcash');setPaymentScreen('addcash');setScreen('Add Cash')}}>

@@ -10,11 +10,12 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("trendingGames");
   const token = localStorage.getItem("token");
   const { intGrupCsnoListData } = useSelector((state) => state.casino);
+  const clientdomainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const intGrupCsnoList = JSON.parse(localStorage.getItem("intGrupCsnoList"));
-  console.log(intGrupCsnoList, "intGrupCsnoList");
+ 
 
   const handleGameClick = (game) => {
     
@@ -33,20 +34,21 @@ const Dashboard = () => {
     )
   ).flat();
 
-  console.log(activeTab, "activeTab");
 
-  // useEffect(()=>{
-  //   const userData ={
-  //     category:"Live casino"
-  //   }
-  //   dispatch(getCasinoByCategory(userData)).then((res)=>{
-  //     console.log(res,"res")
-  //   })
-  // },[])
+
+
+  const setSliderData = clientdomainSetting?.banner?.map((item,index)=>{
+    return {
+      gameName: item.name,
+      gameImg: item.image,
+      gameLink: item.priority,
+    }
+  })
+  console.log(setSliderData,"setSliderData")
 
   return (
     <div className="w-full h-screen hide-scrollbar  overflow-auto ">
-      <div className="w-full flex  flex-row h-[32px] mt-1 mb-3">
+      {clientdomainSetting?.clientNotification && <div className="w-full flex  flex-row h-[32px] mt-1 mb-3">
         <div className="flex items-center h-[32px] justify-end w-[56px] pr-2">
           <img src="/dashboard/speaker.svg" height={20} width={20} alt="" />
         </div>
@@ -56,12 +58,14 @@ const Dashboard = () => {
             direction="left"
             className="text-white text-sm uppercase tracking-wide"
           >
-            Welcome
+            {clientdomainSetting?.clientNotification}
           </marquee>
         </div>
-      </div>
+      </div>}
+
+      {clientdomainSetting?.banner?.length > 0 && <SliderComponent sliderData={setSliderData} />}
   
-      <SliderComponent sliderData={sliderData} />
+      {clientdomainSetting?.banner?.length === 0 && <SliderComponent sliderData={sliderData} />}
     
 
       <div className="w-[98%] hide-scrollbar overflow-x-auto cursor-pointer flex gap-2 px-5 pt-4">

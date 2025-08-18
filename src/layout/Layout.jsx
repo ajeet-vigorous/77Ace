@@ -8,6 +8,8 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import { AiOutlineMessage } from "react-icons/ai";
+import { MdMessage } from "react-icons/md";
 
 
 const Layout = () => {
@@ -88,6 +90,12 @@ const Layout = () => {
           <div className="flex-1 overflow-y-auto hide-scrollbar">
             <AppContent />
           </div>
+         
+          <div className="flex absolute bottom-32 right-0  w-[65px] h-[65px] rounded-full text-white bg-red-500 items-center justify-center">
+          <MdMessage  color="white" size={25} />
+          </div>
+
+          
           {!isAddCashPage && (
             <div className="absolute bottom-0 left-0 right-0 bg-black/75 backdrop-blur-md h-[70px]">
               <SubHeader />

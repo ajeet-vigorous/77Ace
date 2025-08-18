@@ -33,7 +33,7 @@ const AppContent = () => {
     <Route path="/personalinfo" element={<PersonalInfo />} />
     <Route path='/login' element={<Login />} />
     <Route path='/history' element={<History />} />
-    <Route path='/signup' element={<SignUp />} />
+    <Route path='/signup/:referralCode?' element={<SignUp />} />
     <Route path='/download' element={<Download />} />
     <Route path='/depositwithdrawal' element={<DepositWithdrawal />} />
     <Route path='/earn' element={<Earn />} />

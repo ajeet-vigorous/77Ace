@@ -38,7 +38,7 @@ const SliderComponent = ({ sliderData }) => {
     <section className="w-[90%] mx-auto  relative">
       <Slider {...settings}>
         {sliderData?.map((item, index) => (
-          <div key={index}>
+             <div key={index} className="h-[160px]">
             <img
               src={item.gameImg}
               alt={item.gameName}

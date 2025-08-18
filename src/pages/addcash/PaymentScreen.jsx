@@ -332,6 +332,43 @@ const PaymentScreen = ({
           <span className="text-[14px] flex justify-start items-center font-semibold text-[#8A8888]">
             Amount (100-50000 <MdCurrencyRupee size={15} />)
           </span>
+          <div
+                className="flex justify-center items-center border rounded-[11px] mt-3 px-2  w-full py-5"
+                style={{ backgroundColor: "rgb(25,28,28)", opacity: 0.9 }}
+              >
+                <div className="flex flex-col justify-center items-center bg-[#251C1C] mx-1 py-4  rounded-lg w-full h-full">
+                  <label
+                    className="relative cursor-pointerx border border-dashed border-[rgb(0,8,73)] rounded-lg p-5  w-20 h-18  flex justify-center items-center  "
+                    style={{
+                      backgroundColor: "rgb(229,231,252)",
+                      opacity: 0.9,
+                    }}
+                  >
+                      <input
+          ref={fileInputRef}
+          type="file"
+          className="hidden"
+          onChange={(e)=>handleFileChange(e)}
+        />
+                    <span className="text-4xl text-black">+</span>
+                  </label>
+
+                  <span className="m-1 text-sm font-bold text-[#343434]">
+                  {selectedFile && (
+        <div className="mt-2 flex items-center justify-between text-gray-300 text-sm">
+          Selected file: {selectedFile.name}
+          <button className="ml-2 cursor-pointer text-red-500 " onClick={()=>handleRemoveFile()}><RxCross2 size={20} />
+          </button>
+        </div>
+      )}
+                  </span>
+                  {error.screenShotImgError && (
+                    <div className="text-red-600 font-bold text-sm mb-1 text-left">
+                      {error.screenShotImgError}
+                    </div>
+                  )}
+                </div>
+              </div>
           <div className="flex items-center gap-2 mt-2  justify-center rounded-[5px] bg-[#2E2929]">
             <MdCurrencyRupee className="text-[#8A8888] pl-2" size={30} />
             <input
@@ -361,7 +398,7 @@ const PaymentScreen = ({
           <span className="text-red-500">{error.utrNoError}</span>
           <div className="p-4">
       {/* Upload Button */}
-      <label className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded cursor-pointer inline-block">
+      {/* <label className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded cursor-pointer inline-block">
         Upload File
         <input
           ref={fileInputRef}
@@ -369,18 +406,20 @@ const PaymentScreen = ({
           className="hidden"
           onChange={(e)=>handleFileChange(e)}
         />
-      </label>
+      </label> */}
 
       {/* Show Selected File */}
-      {selectedFile && (
+      {/* {selectedFile && (
         <div className="mt-2 flex items-center justify-between text-gray-300 text-sm">
           Selected file: {selectedFile.name}
           <button className="ml-2 cursor-pointer text-red-500 " onClick={()=>handleRemoveFile()}><RxCross2 size={20} />
           </button>
         </div>
       )}
-      <div className="text-red-500">{error.screenShotImgError}</div>
+      <div className="text-red-500">{error.screenShotImgError}</div> */}
     </div>
+
+    
           <button
             onClick={() => handleDepositeRequest()}
             className="w-full  mt-24 bg-gradient-to-t from-[#B81212] to-[#f56e65] text-white text-[16px] font-semibold rounded-[5px] py-2"
