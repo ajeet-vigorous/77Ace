@@ -47,16 +47,16 @@ const Layout = () => {
 
   return (
     <div className="flex flex-col  h-screen justify-center items-center bg-[#181F2F]">
-      
-    <div
-  className="w-full min-h-screen flex flex-col sm:max-w-[500px] mx-auto"
-  style={{
-    backgroundImage: "url('/dashboard/dashboard-bg.webp')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  }}
->
+
+      <div
+        className="w-full min-h-screen flex flex-col sm:max-w-[500px] mx-auto"
+        style={{
+          backgroundImage: "url('/dashboard/dashboard-bg.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         {!isAddCashPage && (
           <div className="h-[69px] shrink-0">
             <AppHeader
@@ -91,12 +91,12 @@ const Layout = () => {
           <div className="flex-1 overflow-y-auto hide-scrollbar">
             <AppContent />
           </div>
-         
-          <div  className=" sm:flex hidden absolute bottom-32 right-2  w-[63px] h-[63px] rounded-full text-white bg-gradient-to-t from-[#a31717] via-[#d41616] to-[#ee7474] items-center justify-center">
-          <MdMessage  color="white" size={25} />
+
+          <div className=" sm:flex hidden absolute bottom-32 right-2  w-[63px] h-[63px] rounded-full text-white bg-gradient-to-t from-[#a31717] via-[#d41616] to-[#ee7474] items-center justify-center">
+            <MdMessage color="white" size={25} />
           </div>
 
-          
+
           {!isAddCashPage && (
             <div className="absolute bottom-0 left-0 right-0 bg-black/75 backdrop-blur-md h-[70px]">
               <SubHeader />
