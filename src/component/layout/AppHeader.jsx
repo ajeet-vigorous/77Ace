@@ -8,7 +8,7 @@ import { getUserBalance } from "../../redux/reducers/user_reducer";
 const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
   const navigate = useNavigate()
   const token = localStorage.getItem("token");
-  const clientBalance = localStorage.getItem("clientBalance") || 0;
+  const clientBalance = localStorage.getItem("clientBalance") ? localStorage.getItem("clientBalance") : 0;
   console.log(clientBalance,"clientBalance");
   const [rotate, setRotate] = useState(false);
   const handleRotate = () => {
@@ -57,7 +57,7 @@ const dispatch = useDispatch();
         </div>
         {token && <div className="flex gap-2 h-full justify-end  items-center !pr-[12px]">
           <div className="bg-[#611A1C] w-[170px] flex justify-between py-[2.5px] px-[3px] items-center h-[41px] rounded-xl">
-            <div className="flex justify-center items-center gap-0.5 pl-1 text-white"><MdCurrencyRupee size={13}/> {Number(clientBalance).toFixed(2)}</div>
+            <div className="flex justify-center items-center gap-0.5 pl-1 text-white"><MdCurrencyRupee size={13}/> {clientBalance ? Number(clientBalance).toFixed(2) : "0.00"}</div>
             <div className="flex gap-2 h-full justify-around  items-center">
             <img src="/header/reset.webp" alt="" onClick={()=>{handleRotate()}}    className={`w-[20px] h-[20px] transition-transform duration-150 ${rotate ? 'rotate-180' : 'rotate-0'}`}/>
             <img onClick={()=>{navigate('/addcash')}} src="/header/deposit.webp" alt=""  className="w-[35px] h-full"/>

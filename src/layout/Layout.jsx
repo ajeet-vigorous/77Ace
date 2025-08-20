@@ -91,7 +91,7 @@ const Layout = () => {
             <AppContent />
           </div>
          
-          <div className="flex absolute bottom-32 right-0  w-[65px] h-[65px] rounded-full text-white bg-red-500 items-center justify-center">
+          <div  className="flex absolute bottom-32 right-0  w-[63px] h-[63px] rounded-full text-white bg-gradient-to-t from-[#a31717] via-[#d41616] to-[#ee7474] items-center justify-center">
           <MdMessage  color="white" size={25} />
           </div>
 

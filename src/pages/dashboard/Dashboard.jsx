@@ -13,6 +13,9 @@ const Dashboard = () => {
   const clientdomainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dashboardModalOpen = localStorage.getItem("dashboardModalOpen")
+  const [modalOpen, setModalOpen] = useState(dashboardModalOpen=="true"?true:false);
+ 
 
   const intGrupCsnoList = JSON.parse(localStorage.getItem("intGrupCsnoList"));
  
@@ -160,6 +163,18 @@ const Dashboard = () => {
           of your local laws.
         </p>
       </div>
+      {modalOpen ? (
+        <div onClick={(e)=>{setModalOpen(false);}} className="fixed inset-0 z-50 flex items-center justify-center bg-black px-2 bg-opacity-50">
+            <div onClick={(e)=>{e.stopPropagation()}} className="flex gap-2 flex-col items-center justify-center">
+            <img src='/dashboard/17440976301742967378abnner8-1.webp' className="w-[350px]  h-[440px]"/>
+            <div className=" flex text-white gap-2 items-center justify-center">
+              <input onChange={(e)=>{setModalOpen(false);localStorage.setItem("dashboardModalOpen", false);}}  type="checkbox" className="w-[15px] h-[15px]"/>
+              <label>Do not show this again!</label>
+            </div>
+            </div>
+        </div>
+      ) : null}
+
     </div>
   );
 };
