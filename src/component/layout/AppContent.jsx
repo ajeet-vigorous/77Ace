@@ -36,6 +36,7 @@ const AppContent = () => {
     <Route path='/signup/:referralCode?' element={<SignUp />} />
     <Route path='/download' element={<Download />} />
     <Route path='/depositwithdrawal' element={<DepositWithdrawal />} />
+    
     <Route path='/earn' element={<Earn />} />
    
 

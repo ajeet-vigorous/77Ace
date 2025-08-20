@@ -77,7 +77,7 @@ const AppSidebar = ({toggleSidebar}) => {
         </div>
 
 
-        <button className="w-full flex items-center justify-center py-3 rounded-md bg-gradient-to-b from-[#d42a2a] to-[#880f0f]">
+        <button onClick={()=>{navigate('/download')}} className="w-full flex items-center justify-center py-3 rounded-md bg-gradient-to-b from-[#d42a2a] to-[#880f0f]">
           <div className="text-white font-semibold flex items-center justify-center gap-2"><IoMdDownload size={22} /> Download <img src="" alt="" /> </div>
         </button>
 

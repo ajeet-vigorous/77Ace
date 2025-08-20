@@ -68,7 +68,7 @@ const MyAccount = () => {
             <img src="sidebar/myaccount/Recode.svg" alt="" height={38} width={38}/>
             <span className='text-[13px] whitespace-nowrap text-white'>Record</span>
             </div>
-            <div className='flex flex-col justify-center items-center cursor-pointer'>
+            <div onClick={()=>{navigate('/download')}} className='flex flex-col justify-center items-center cursor-pointer'>
             <img src="sidebar/myaccount/Download.svg" alt="" height={38} width={38}/>
             <span className='text-[13px] whitespace-nowrap text-white'>Download </span>
             </div>

@@ -80,7 +80,7 @@ const AddBank = () => {
        <span className='text-white text-[17px] font-semibold'>Bank Card</span>    
        </div>
        <div className='px-3'>
-       {!getAccountDetails && <div onClick={() => {setBankForm(true);getBankDetails()}} className='mt-16 rounded-3xl  flex flex-col gap-2 items-center justify-center h-[250px] bg-white/10 backdrop-blur-sm'>
+       {!getAccountDetails?.data && <div onClick={() => {setBankForm(true);getBankDetails()}} className='mt-16 rounded-3xl  flex flex-col gap-2 items-center justify-center h-[250px] bg-white/10 backdrop-blur-sm'>
         <div className='flex flex-col rounded-full gap-2 items-center bg-white/5 backdrop-blur-sm justify-center'>
         <FiPlus className='text-white' size={50}/>
 
@@ -89,7 +89,7 @@ const AddBank = () => {
         <span className='text-white text-[17px] '>{getAccountDetails ? 'Update' :'Add' }  Account</span>
         </div>}
 
-        {getAccountDetails &&
+        {getAccountDetails?.data &&
          <div onClick={() => setShowCardEdit((prev) => !prev)} style={{backgroundImage:`url(/paymentimg/card-1.webp)`}} className='w-full h-[240px] relative mt-14 rounded-3xl bg-cover bg-center'>
             {showCardEdit && <div className='flex px-10 pt-3 justify-between items-center'>
                 <img onClick={() => setBankForm(true)} className='cursor-pointer h-7 w-7' src="paymentimg/edit-icon.svg" alt="" />   
@@ -97,11 +97,11 @@ const AddBank = () => {
 
             </div>}
             <div>
-                <div className={`text-white ${showCardEdit ? 'px-10 pt-2' : 'px-10 pt-8'} text-[18px] font-semibold`}>{bankDetails.accountHolder}</div>
+                <div className={`text-white ${showCardEdit ? 'px-10 pt-2' : 'px-10 pt-8'} text-[18px] font-semibold`}>{bankDetails?.accountHolder}</div>
              
             </div>
             <div>
-                <div className={`text-white absolute bottom-14 ${showCardEdit ? 'px-10 pt-2' : 'px-10 pt-8'} text-[18px] font-semibold`}> ****{bankDetails.accountNumber.slice(-4)}</div>
+                <div className={`text-white absolute bottom-14 ${showCardEdit ? 'px-10 pt-2' : 'px-10 pt-8'} text-[18px] font-semibold`}> ****{bankDetails?.accountNumber.slice(-4)}</div>
              
             </div>
 
@@ -118,27 +118,27 @@ const AddBank = () => {
             
             <div className='flex flex-col gap-2 items-start justify-start mb-6'>
                 <span className='text-white text-[17px] font-semibold'>Bank Name</span>
-                <input value={bankDetails.bankName} onChange={(e) => {setBankDetails({...bankDetails,bankName:e.target.value});setError({...error,bankName:''})}} type="text" placeholder='Enter Bank Name' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
+                <input value={bankDetails?.bankName} onChange={(e) => {setBankDetails({...bankDetails,bankName:e.target.value});setError({...error,bankName:''})}} type="text" placeholder='Enter Bank Name' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
                 
             </div>
             {error.bankName && <span className='text-red-500'>{error.bankName}</span>}
             <div className='flex flex-col gap-2 items-start justify-start mb-6'>
                 <span className='text-white text-[17px] font-semibold'>Holder Name</span>
-                <input value={bankDetails.accountHolder} onChange={(e) => {setBankDetails({...bankDetails,accountHolder:e.target.value});setError({...error,accountHolder:''})}} type="text" placeholder='Enter Holder Name' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
+                <input value={bankDetails?.accountHolder} onChange={(e) => {setBankDetails({...bankDetails,accountHolder:e.target.value});setError({...error,accountHolder:''})}} type="text" placeholder='Enter Holder Name' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
                 
 
             </div>
             {error.accountHolder && <span className='text-red-500'>{error.accountHolder}</span>}
             <div className='flex flex-col gap-2 items-start justify-start mb-6'>
                 <span className='text-white text-[17px] font-semibold'>Account Number</span>
-                <input value={bankDetails.accountNumber} onChange={(e) => {setBankDetails({...bankDetails,accountNumber:e.target.value});setError({...error,accountNumber:''})}} type="number" placeholder='Enter Account Number' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
+                <input value={bankDetails?.accountNumber} onChange={(e) => {setBankDetails({...bankDetails,accountNumber:e.target.value});setError({...error,accountNumber:''})}} type="number" placeholder='Enter Account Number' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
                 
 
             </div>
             {error.accountNumber && <span className='text-red-500'>{error.accountNumber}</span>}
             <div className='flex flex-col gap-2 items-start justify-start mb-6'>
                 <span className='text-white text-[17px] font-semibold'>IFSC Code</span>
-                <input value={bankDetails.ifscCode} onChange={(e) => {setBankDetails({...bankDetails,ifscCode:e.target.value});setError({...error,ifscCode:''})}} type="text" placeholder='Enter IFSC Code' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
+                <input value={bankDetails?.ifscCode} onChange={(e) => {setBankDetails({...bankDetails,ifscCode:e.target.value});setError({...error,ifscCode:''})}} type="text" placeholder='Enter IFSC Code' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
                 
 
 
@@ -175,7 +175,7 @@ const AddBank = () => {
            
             <div className='flex flex-col gap-2 items-start justify-start mb-6'>
                 <span className='text-white text-[17px] font-semibold'>Account Number</span>
-                <input value={bankDetails.accountNumber} onChange={(e) => {setBankDetails({...bankDetails,accountNumber:e.target.value});setError({...error,accountNumber:''})}} type="number" placeholder='Enter Account Number' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
+                <input value={bankDetails?.accountNumber} onChange={(e) => {setBankDetails({...bankDetails,accountNumber:e.target.value});setError({...error,accountNumber:''})}} type="number" placeholder='Enter Account Number' className='w-full h-[44px] rounded-[9px] bg-[#261C1C]  px-3 text-[16px] text-white' />
                 
 
             </div>
