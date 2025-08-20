@@ -27,12 +27,13 @@
  
   .slick-dots li button:before {
     font-size: 7px;
-    color: black !important;
+    color: white !important;
     opacity: 1 !important;
   }
  
   .slick-dots li.slick-active button:before {
     color: white !important;
+    font-size: 8px;
     opacity: 1 !important;
   }
 

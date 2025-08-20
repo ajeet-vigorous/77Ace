@@ -89,6 +89,10 @@ const PaymentScreen = ({
   }, []);
 
   const handleDepositeRequest = () => {
+    if (!screenShotImg||fileInputRef.current.value === "") {
+      setError({ screenShotImgError: "Please upload screen shot", amountError: "" });
+      return;
+    }
     if (!amount) {
       setError({ amountError: "Please enter valid amount", utrNoError: "" });
       return;
@@ -101,10 +105,6 @@ const PaymentScreen = ({
 
     if (utrNo.length < 6) {
       setError({ utrNoError: "Please enter valid UTR No", amountError: "" });
-      return;
-    }
-    if (!screenShotImg||fileInputRef.current.value === "") {
-      setError({ screenShotImgError: "Please upload screen shot", amountError: "" });
       return;
     }
 
