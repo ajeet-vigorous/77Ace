@@ -5,8 +5,8 @@ import { MdPhoneAndroid } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import { register } from "../../redux/reducers/auth.reducer";
 import { useDispatch } from "react-redux";
-import { senOtp } from "../../redux/reducers/user_reducer";
-const SignUp = () => {
+import { ForForgetPassword, senOtp } from "../../redux/reducers/user_reducer";
+const ForgetPassword = () => {
   const clientdomainSetting = JSON.parse(
     localStorage.getItem("clientdomainSetting")
   );
@@ -40,60 +40,51 @@ const SignUp = () => {
     });
   };
   const submitHandler = () => {
-    if (!username && !password) {
+    if (!number && !password && !otp) {
       setErrors({
-        username: username ? "" : "Please enter  number",
+        number: number ? "" : "Please enter  number",
         password: password ? "" : "Please enter password",
+        otp: otp ? "" : "Please enter otp",
       });
       return;
     }
-    if (username.length < 10 && !password) {
+    if (number.length < 10 && !password) {
       setErrors({
-        username: "Please enter  the correct mobile phone format",
+        number: "Please enter  the correct mobile phone format",
         password: "Please enter password",
       });
       return;
     }
-    if (!username || !password) {
+    if (!number || !password) {
       setErrors({
-        username: username ? "" : "Please enter  number",
+        number: number ? "" : "Please enter  number",
         password: password ? "" : "Please enter password",
       });
 
       return;
     }
-    // if (!number) {
-    //   setErrors({
-    //     number: number ? "" : "Please enter  number",
-    //   });
-    //   return;
-    // }
-    if (!password) {
+    
+    
+    if (!otp) {
       setErrors({
-        password: password ? "" : "Please enter  password",
+        otp: otp ? "" : "Please enter  otp",
       });
       return;
     }
-    // if (!otp) {
-    //   setErrors({
-    //     otp: otp ? "" : "Please enter  otp",
-    //   });
-    //   return;
-    // }
 
     const data = {
-      username: username,
-      // mobileNo: number,
-      // otp: otp,
+     
+      mobile: number,
+      otp: otp,
       password: password,
-      referralCode: referralCode,
-      isClient: true,
-      host: window.location.origin,
+      
+    //   isClient: true,
+    //   host: window.location.origin,
     };
 
-    dispatch(register(data)).then((res) => {
+    dispatch(ForForgetPassword(data)).then((res) => {
       if (!res.error) {
-        navigate("/dashboard");
+        navigate("/login");
       }
     });
   };
@@ -106,28 +97,11 @@ const SignUp = () => {
           src="/backbutton/back-button.webp"
           alt=""
         />
-        <span className="text-white text-[19px] font-semibold">register</span>
+        <span className="text-white text-[19px] font-semibold">Forget Password</span>
       </div>
-      <div className="flex items-center gap-2 mt-7  justify-center  rounded-[12px] bg-[#261C1C]">
-        <MdPhoneAndroid
-          className="text-[#8A8888] bg-[#261C1C]  ml-4"
-          size={28}
-        />
-        <input
-          placeholder="Please Enter User Name"
-          type="text"
-          className="w-full text-[15px] h-[44px]  rounded-r-[12px] bg-[#261C1C]  px-4 text-white"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      {errors.username && (
-        <span className="text-red-500 text-[12px] mt-1 ml-4">
-          {errors.username}
-        </span>
-      )}
+      
 
-      {/* <div className="flex items-center gap-2 mt-7  justify-center  rounded-[12px] bg-[#261C1C]">
+      <div className="flex items-center gap-2 mt-7  justify-center  rounded-[12px] bg-[#261C1C]">
         <MdPhoneAndroid
           className="text-[#8A8888] bg-[#261C1C]  ml-4"
           size={28}
@@ -138,7 +112,7 @@ const SignUp = () => {
           maxLength={10}
           className="w-full text-[15px] h-[44px]  rounded-r-[12px] bg-[#261C1C]  px-4 text-white"
           value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={(e) => {setNumber(e.target.value);setErrors({...errors,number:""})}}
         />
         {clientdomainSetting?.isSignUpOtp ? (
           <button
@@ -167,21 +141,21 @@ const SignUp = () => {
           type="number"
           className="w-full text-[15px] h-[44px]  rounded-r-[12px] bg-[#261C1C]  px-4 text-white"
           value={otp}
-          onChange={(e) => setOtp(e.target.value)}
+          onChange={(e) => {setOtp(e.target.value);setErrors({...errors,otp:""})}}
         />
       </div>
       {errors.otp && (
         <span className="text-red-500 text-[12px] mt-1 ml-4">{errors.otp}</span>
-      )} */}
+      )}
 
       <div className="flex items-center gap-2 mt-6  justify-center rounded-[12px] bg-[#261C1C]">
         <IoIosLock className="text-[#8A8888] bg-[#261C1C] ml-4" size={27} />
         <input
-          placeholder="Please Enter your password"
+          placeholder="Please Enter New Password"
           type={showPassword ? "text" : "password"}
           className="w-full text-[15px] h-[44px]  rounded-r-[12px] bg-[#261C1C]  px-4  text-white"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {setPassword(e.target.value);setErrors({...errors,password:""})}}
         />
         <FaRegEye
           onClick={() => setShowPassword(!showPassword)}
@@ -195,42 +169,14 @@ const SignUp = () => {
         </span>
       )}
 
-      <div className="flex items-center gap-2 mt-6  justify-center rounded-[12px] bg-[#261C1C]">
-        <IoIosLock className="text-[#8A8888] bg-[#261C1C] ml-4" size={27} />
-        <input
-          disabled
-          placeholder="Referral Code"
-          type="text"
-          className="w-full text-[15px] h-[44px]  rounded-r-[12px] bg-[#261C1C]  px-4  text-white"
-          value={referralCode}
-        />
-      </div>
-      <div className="flex items-center  gap-2 my-6">
-        <input
-          type="checkbox"
-          id="terms"
-          checked={isChecked}
-          onChange={() => setIsChecked(!isChecked)}
-          className="w-4 h-4 accent-green-500 rounded-full cursor-pointer"
-        />
-        <label
-          htmlFor="terms"
-          className="text-white text-[14px] cursor-pointer"
-        >
-          <span className="text-[#8A8888] text-[15px]">
-            I have agree to the{" "}
-          </span>
-          <span className="text-white text-[15px]">Use Privacy Agreement</span>
-        </label>
-      </div>
+  
 
       <button
         onClick={() => submitHandler()}
-        disabled={!isChecked}
-        className={`w-full uppercase mt-1 ${
-          isChecked
-            ? "bg-gradient-to-t from-[#ec1809] to-[#c45f5f]"
-            : "bg-[#8A8888] "
+        
+        className={`w-full uppercase mt-4 ${
+          "bg-gradient-to-t from-[#ec1809] to-[#c45f5f]"
+            
         } text-white text-[16px] font-semibold rounded-[5px] py-2`}
       >
         Confirm
@@ -247,4 +193,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default ForgetPassword;

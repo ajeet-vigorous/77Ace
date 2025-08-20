@@ -47,7 +47,7 @@ const Dashboard = () => {
       gameLink: item.priority,
     }
   })
-  console.log(setSliderData,"setSliderData")
+  
 
   return (
     <div className="w-full h-screen hide-scrollbar  overflow-auto ">

@@ -21,6 +21,11 @@ export const sidebarJson = {
       name:"Me",
       icon:"/sidebar/me.webp",
       path:"/myaccount"
+    },
+    {
+      name:"Forget Password",
+      icon:"dashboard/forget.png",
+      path:"/forgetpassword"
     }
   ],
   promo :[

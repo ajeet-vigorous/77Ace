@@ -189,6 +189,37 @@ export const  uploadScreenShot = createAsyncThunk(
   }
 );
 
+
+export const  senOtp = createAsyncThunk(
+  "user/senOtp",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const user = await userServices.senOtp(payload);
+
+      return user;
+    } catch (error) {
+      message.error(error?.data?.message, 2);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const  ForForgetPassword = createAsyncThunk(
+  "user/senOtpForForgetPassword",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const user = await userServices.ForForgetPassword(payload);
+
+      return user;
+    } catch (error) {
+      message.error(error?.data?.message, 2);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -352,6 +383,17 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(senOtp.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(senOtp.fulfilled, (state, action) => {
+        state.loading = false;
+        state.senOtp = action.payload.data;
+      })
+      .addCase(senOtp.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(uploadScreenShot.pending, (state) => {
         state.loading = true;
       })
@@ -360,6 +402,17 @@ const userSlice = createSlice({
         state.screenShotImg = action.payload.data;
       })
       .addCase(uploadScreenShot.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(ForForgetPassword.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(ForForgetPassword.fulfilled, (state, action) => {
+        state.loading = false;
+        state.ForForgetPassword = action.payload.data;
+      })
+      .addCase(ForForgetPassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

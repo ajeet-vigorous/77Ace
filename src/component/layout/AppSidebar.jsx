@@ -13,12 +13,17 @@ const AppSidebar = ({toggleSidebar}) => {
   const navigate = useNavigate();
 
   const handleNavigation = (item) => {
-    if (token) {
+
+    if (token ) {
       navigate(item.path);
       toggleSidebar()
       
     }else if(item.path === '/') {
       navigate('/dashboard');
+      toggleSidebar()
+    
+    }else if(item.path === '/forgetpassword') {
+      navigate('/forgetpassword');
       toggleSidebar()
     }else {
       navigate('/login');

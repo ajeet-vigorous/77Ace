@@ -14,6 +14,7 @@ import SignUp from '../../pages/creadentialPage/SignUp'
 import Earn from '../../earn/Earn'
 import IframeCasino from '../../pages/iframe/IframeCasino'
 import DepositWithdrawal from '../../pages/depositwithdrawal/DepositWithdrawal'
+import ForgetPassword from '../../pages/creadentialPage/ForgetPassword'
 
 
 
@@ -36,6 +37,7 @@ const AppContent = () => {
     <Route path='/signup/:referralCode?' element={<SignUp />} />
     <Route path='/download' element={<Download />} />
     <Route path='/depositwithdrawal' element={<DepositWithdrawal />} />
+    <Route path='/forgetpassword' element={<ForgetPassword />} />
     
     <Route path='/earn' element={<Earn />} />
    

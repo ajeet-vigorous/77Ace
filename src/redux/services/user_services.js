@@ -180,6 +180,34 @@ async function getUserStatement(data) {
     }
   }
 
+  async function senOtp (data) {
+    try {
+      const user = await apiCall("POST", "website/getWhatsAppOtp",data);
+  
+     
+    if (user) {
+      return user;
+    }
+    } catch (error) {
+      console.error("User Bank Details error:", error);
+      return Promise.reject(error);
+    }
+  }
+
+  async function ForForgetPassword (data) {
+    try {
+      const user = await apiCall("POST", "website/userPasswordChangeByMobile",data);
+  
+     
+    if (user) {
+      return user;
+    }
+    } catch (error) {
+      console.error("User Bank Details error:", error);
+      return Promise.reject(error);
+    }
+  }
+
 
   export const userServices = {
     getUserStatement,
@@ -193,5 +221,7 @@ async function getUserStatement(data) {
     getAccountDetailsofClient,
     withDrawRequest,
     getDepositWithdrawList,
-    uploadScreenShot
+    uploadScreenShot,
+    senOtp,
+    ForForgetPassword
   }
