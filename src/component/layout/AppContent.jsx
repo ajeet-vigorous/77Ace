@@ -1,7 +1,6 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Dashboard from '../../pages/dashboard/Dashboard'
-import MyAccount from '../../pages/myaccount/myaccount'
 import Login from '../../pages/creadentialPage/Login'
 import Promo from '../../pages/promo/Promo'
 import AddCash from '../../pages/addcash/AddCash'
@@ -14,6 +13,8 @@ import SignUp from '../../pages/creadentialPage/SignUp'
 import Earn from '../../earn/Earn'
 import IframeCasino from '../../pages/iframe/IframeCasino'
 import DepositWithdrawal from '../../pages/depositwithdrawal/DepositWithdrawal'
+import ForgetPassword from '../../pages/creadentialPage/ForgetPassword'
+import MyAccount from '../../pages/myaccount/MyAccount'
 
 
 
@@ -24,22 +25,24 @@ import DepositWithdrawal from '../../pages/depositwithdrawal/DepositWithdrawal'
 const AppContent = () => {
   return (
     <Routes>
-    <Route path="/" element={<Navigate to="/dashboard" />} />
-    <Route path='/dashboard' element={<Dashboard />} />
-    <Route path='/myaccount' element={<MyAccount />} />
-    <Route path='/promo' element={<Promo />} />                      
-    <Route path="/addcash" element={<AddCash />} />
-    <Route path="/addbank" element={<AddBank />} />
-    <Route path="/personalinfo" element={<PersonalInfo />} />
-    <Route path='/login' element={<Login />} />
-    <Route path='/history' element={<History />} />
-    <Route path='/signup/:referralCode?' element={<SignUp />} />
-    <Route path='/download' element={<Download />} />
-    <Route path='/depositwithdrawal' element={<DepositWithdrawal />} />
-    <Route path='/earn' element={<Earn />} />
-   
+      <Route path="/" element={<Navigate to="/dashboard" />} />
+      <Route path='/dashboard' element={<Dashboard />} />
+      <Route path='/myaccount' element={<MyAccount />} />
+      <Route path='/promo' element={<Promo />} />
+      <Route path="/addcash" element={<AddCash />} />
+      <Route path="/addbank" element={<AddBank />} />
+      <Route path="/personalinfo" element={<PersonalInfo />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/history' element={<History />} />
+      <Route path='/signup/:referralCode?' element={<SignUp />} />
+      <Route path='/download' element={<Download />} />
+      <Route path='/depositwithdrawal' element={<DepositWithdrawal />} />
+      <Route path='/forgetpassword' element={<ForgetPassword />} />
+      
+      <Route path='/earn' element={<Earn />} />
 
-    <Route path='/paymentcollectionhistory' element={<PaymentCollectionHistory />} />         
+
+      <Route path='/paymentcollectionhistory' element={<PaymentCollectionHistory />} />
     </Routes>
 
   )
