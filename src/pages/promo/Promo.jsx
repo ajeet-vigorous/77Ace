@@ -3,11 +3,12 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import PromoPage from './promopage/PromoPage';
 import SlotMachine from './promopage/SlotMachine';
-import Viprewards from './promopage/viprewards';
+
 import EarnMoney from './promopage/EarnMoney';
 import RechargeExtra from './promopage/RechargeExtra';
 import LuckyWheel from './promopage/LuckyWheel';
 import Vip from './vip/Vip';
+import Viprewards from './promopage/Viprewards';
 
 const Promo = () => {
     const location = useLocation();
