@@ -9,7 +9,6 @@ const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
   const navigate = useNavigate()
   const token = localStorage.getItem("token");
   const clientBalance = localStorage.getItem("clientBalance") ? localStorage.getItem("clientBalance") : 0;
-  console.log(clientBalance,"clientBalance");
   const [rotate, setRotate] = useState(false);
   const handleRotate = () => {
     setRotate(true);

@@ -77,7 +77,7 @@ const Dashboard = () => {
             <img
               key={index}
               onClick={() => setActiveTab(item.casinoName)}
-              className="sm:w-[78px] w-[55px] sm:h-[78px] h-[55px]"
+              className="sm:w-[78px] w-[65px] sm:h-[78px] h-[65px]"
               src={
                 activeTab === item.casinoName
                   ? item.activeIcon
@@ -108,10 +108,12 @@ const Dashboard = () => {
                   key={index}
                   className="cursor-pointer sm:h-[125px]  rounded-[5px]"
                 >
-                  <img className="sm:w-full md:w-[90%] rounded-[5px] h-[88%] sm:h-full"  src={item.urlThumb} alt={item.gameName} />
-                  <div className="text-white flex items-center justify-center text-[14px] font-semibold">
-                    {item.gameName}
-                  </div>
+                  <img className="sm:w-full md:w-full rounded-[5px] h-[95px] sm:h-full"  src={item.urlThumb} alt={item.gameName} />
+                  <div className="flex items-start w-full ">
+  <span className="text-white truncate text-[14px] font-semibold">
+    {item.gameName}
+  </span>
+</div>
                 </div>
               );
             })
@@ -124,10 +126,12 @@ const Dashboard = () => {
                 key={index}
                 className="cursor-pointer mt-4  sm:h-[125px] rounded-[5px]"
               >
-                <img className="sm:w-full md:w-[90%] rounded-[5px] h-[88%] sm:h-full"  src={item.urlThumb} alt={item.gameName} />
-                <div className="text-white flex items-center justify-center text-[14px] font-semibold">
-                  {item.gameName}
-                </div>
+                <img className="sm:w-full  rounded-[5px] h-[95%] sm:h-full"  src={item.urlThumb} alt={item.gameName} />
+                <div className="flex items-start w-full ">
+  <span className="text-white truncate text-[14px] font-semibold">
+    {item.gameName}
+  </span>
+</div>
               </div>
               );
             })}

@@ -150,7 +150,7 @@ const DepositWithdrawal = () => {
     <tbody className="bg-white/5 whitespace-nowrap backdrop-blur-sm text-white text-center w-full text-[14px]">
         {fileredData[withdrawDepositTab]?.map((item, index) => (
             <tr key={index}>
-                <td className="px-6 py-2 whitespace-nowrap border-b">{item.amount}</td>
+                <td className="px-6 py-2 whitespace-nowrap border-b">{Number(item.amount).toFixed(2)}</td>
                 <td className="px-6 py-2 whitespace-nowrap border-b">{item.utrNo}</td>                
                 <td className="px-6 py-2 whitespace-nowrap border-b">{item.remark || '-'}</td>
                 <td className="px-6 py-2 whitespace-nowrap border-b">{new Date(item.createdAt).toLocaleString()}</td>

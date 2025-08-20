@@ -388,10 +388,13 @@ const PaymentScreen = ({
               value={utrNo}
               placeholder="UTR No"
               onChange={(e) => {
-                setUtrNo(e.target.value);
+                const value = e.target.value.slice(0, 16);
+                setUtrNo(value);
                 setError({ amountError: "", utrNoError: "" });
               }}
+              maxLength={16}
               type="number"
+              
               className="w-full h-[44px]  bg-[#2E2929]  px-4 text-[16px] text-white"
             />
           </div>

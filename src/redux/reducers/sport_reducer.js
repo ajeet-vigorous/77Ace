@@ -24,7 +24,8 @@ export const casinoLogin = createAsyncThunk(
       const sportMatchList = await sportServices.casinoLogin(reqData);
       return sportMatchList;
     } catch (error) {
-      return rejectWithValue(error.message);
+      console.log(error ,'dsadas');
+      return rejectWithValue(error?.data?.message);
     }
   }
 );

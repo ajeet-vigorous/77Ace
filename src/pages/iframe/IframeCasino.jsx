@@ -4,13 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { casinoLogin } from "../../redux/reducers/sport_reducer";
+import Loader from "../../component/loader/Loader";
 
 
 
 const IframeCasino = () => {   
    
     const dispatch = useDispatch();
-    const {casinoData , loading} = useSelector((state) => state.sport);
+    const {casinoData , loading, error} = useSelector((state) => state.sport);
+    
 
    
 
@@ -28,6 +30,18 @@ const IframeCasino = () => {
     }, []);
 
 
+    console.log(error,'error')
+
+
+    if(error){
+       return <div className=" flex items-center justify-center">
+            <div className=" text-black p-5 rounded">
+                <h1 className="text-2xl font-bold"></h1>
+                <p>{error}</p>
+            </div>
+        </div>
+    }
+
    
    
 
@@ -39,13 +53,13 @@ const IframeCasino = () => {
         <div className='iframeCasinoMain mb-20'>
             {/* {showAlert && <div className={`absolute top-[2%] right-[2%] px-5 py-3 z-30 ${errorType === 1 ? "bg-red-600" : "bg-green-600"}  rounded`}><span className='white-text font-bold'>{resMessage}</span></div>} */}
             {loading === true ?
-          ''
+          <Loader/>
                 : null}
 
             {casinoData ? (
                 <>
                     {loading === true ?
-                        ''
+                        <Loader/>
                         : null}
                     <div className="afterFooter">
                         <iframe src={casinoData.url} title=" " loading='lazy' className=" mx-auto w-[100%] h-screen   "  name="flll" allowfullscreen="true" />

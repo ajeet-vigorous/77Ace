@@ -17,6 +17,8 @@ const SubHeader = () => {
     return localStorage.getItem("selectedTab") || "1";
   });
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
    
     localStorage.setItem("selectedTab", seletedTab);
@@ -55,9 +57,9 @@ const SubHeader = () => {
           <img src="/navigationtab/earn.svg" alt="" onClick={()=>{setSelectedTab('4');navigate('/earn')}}/>
           <p className="text-white text-[13px]" >Earn </p>
         </div>
-        <div className={`flex flex-col cursor-pointer h-full gap-1 justify-center items-center ${seletedTab !== '5' ? 'opacity-20' : ''}`} onClick={()=>{setSelectedTab('5');navigate('/myaccount')}}>
-         {seletedTab === '5' && <img className="w-[45px] absolute top-2  h-[40px]" src={'/navigationtab/foot-bg.webp' } alt="" onClick={()=>{setSelectedTab('5');navigate('/myaccount')}}/>}
-          <img src="/navigationtab/account.svg" alt="" onClick={()=>{setSelectedTab('5');navigate('/myaccount')}}/>
+        <div className={`flex flex-col cursor-pointer h-full gap-1 justify-center items-center ${seletedTab !== '5' ? 'opacity-20' : ''}`} onClick={()=>{if(token){setSelectedTab('5');navigate('/myaccount')} else {navigate('/login')}}}>
+         {seletedTab === '5' && <img className="w-[45px] absolute top-2  h-[40px]" src={'/navigationtab/foot-bg.webp' } alt="" onClick={()=>{if(token){setSelectedTab('5');navigate('/myaccount')} else {navigate('/login')}}}/>}
+          <img src="/navigationtab/account.svg" alt="" onClick={()=>{if(token){setSelectedTab('5');navigate('/myaccount')} else {navigate('/login')}}}/>
           <p className="text-white text-[13px]" >Me </p>
         </div>
         

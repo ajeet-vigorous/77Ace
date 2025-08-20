@@ -63,19 +63,19 @@ const Withdraw = ({paymentScreen}) => {
                 
             </div>
             {getAccountDetails?.data && <>
-            <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+                <div className='flex w-full text-white text-[13px] rounded-full py-0.5 px-3 mb-2 mt-2 bg-gradient-to-r from-[#B81212] to-[#140f0e] items-center justify-between'>
             <span>Bank Name</span>
           {getAccountDetails?.data?.bankName}
           </div>
-          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <div className='flex w-full text-white text-[13px] rounded-full py-0.5 px-3 mb-2 bg-gradient-to-r from-[#B81212] to-[#140f0e] items-center justify-between'>
           <span>Account Holder Name</span>
           {getAccountDetails?.data?.accountHolder}
           </div>
-          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <div className='flex w-full text-white text-[13px] rounded-full py-0.5 px-3 mb-2 bg-gradient-to-r from-[#B81212] to-[#140f0e] items-center justify-between'>
           <span>Account No</span>
           {getAccountDetails?.data?.accountNumber}
           </div>
-          <div className="flex text-white items-center justify-between p-2 rounded-[5px] bg-white/5 mt-2 backdrop-blur-sm">
+          <div className='flex w-full text-white text-[13px] rounded-full py-0.5 px-3 bg-gradient-to-r from-[#B81212] to-[#140f0e] items-center justify-between'>
           <span>IFSC Code</span>
           {getAccountDetails?.data?.ifscCode}
           </div>
@@ -102,13 +102,13 @@ const Withdraw = ({paymentScreen}) => {
                         return(
                             <div key={index} className='flex w-full rounded-full py-0.5 px-3 bg-gradient-to-r from-[#B81212] to-[#140f0e] items-center justify-between'>
                                 <span className='text-[15px] font-thin  text-white'>{item.name}</span>
-                                <span className='text-[15px] font-semibold text-[#8A8888]'>Rs:{item.amount}</span>
+                                <span className='text-[15px] font-semibold text-[#8A8888]'>Rs:{Number(item.amount).toFixed(2)}</span>
                             </div>
                         )
                     })
                 }
                </div>
-               <button onClick={() => {handleWithDrawRequest()}} className='w-full  mt-[16px] bg-[#8B8888] text-white text-[15px] font-semibold rounded-[3px] py-2'>
+               <button  onClick={() => {handleWithDrawRequest()}} className={`w-full  mt-[16px]  ${amount ? 'bg-gradient-to-t from-[#B81212] to-[#f56e65]':'bg-[#8B8888]'} text-white text-[15px] font-semibold rounded-[3px] py-2`}>
                 SUBMIT
               </button>
 

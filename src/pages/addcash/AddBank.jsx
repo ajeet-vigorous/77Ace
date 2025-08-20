@@ -90,18 +90,19 @@ const AddBank = () => {
         </div>}
 
         {getAccountDetails?.data &&
-         <div onClick={() => setShowCardEdit((prev) => !prev)} style={{backgroundImage:`url(/paymentimg/card-1.webp)`}} className='w-full h-[240px] relative mt-14 rounded-3xl bg-cover bg-center'>
-            {showCardEdit && <div className='flex px-10 pt-3 justify-between items-center'>
-                <img onClick={() => setBankForm(true)} className='cursor-pointer h-7 w-7' src="paymentimg/edit-icon.svg" alt="" />   
-                <img onClick={() => setAccountForm(true)} className='cursor-pointer h-7 w-7' src="paymentimg/delete-icon.svg" alt="" />   
+         <div onClick={() => setShowCardEdit((prev) => !prev)}  className='w-full bg-red-600    relative mt-14 rounded-3xl bg-cover bg-center'>
+            <img src="/paymentimg/card-1.webp" alt="" />
+            {showCardEdit && <div className='flex sm:px-10 px-5 absolute top-0 w-full pt-3 justify-between items-center'>
+                <img onClick={() => setBankForm(true)} className='cursor-pointer sm:h-7 sm:w-7 h-6 w-6' src="paymentimg/edit-icon.svg" alt="" />   
+                <img onClick={() => setAccountForm(true)} className='cursor-pointer sm:h-7 sm:w-7 h-6 w-6' src="paymentimg/delete-icon.svg" alt="" />   
 
             </div>}
             <div>
-                <div className={`text-white ${showCardEdit ? 'px-10 pt-2' : 'px-10 pt-8'} text-[18px] font-semibold`}>{bankDetails?.accountHolder}</div>
+                <div className={`text-white sm:left-10 left-7 absolute ${showCardEdit ?'top-10':'top-7'} text-[18px] font-semibold`}>{bankDetails?.accountHolder}</div>
              
             </div>
             <div>
-                <div className={`text-white absolute bottom-14 ${showCardEdit ? 'px-10 pt-2' : 'px-10 pt-8'} text-[18px] font-semibold`}> ****{bankDetails?.accountNumber.slice(-4)}</div>
+                <div className={`text-white absolute bottom-10   sm:bottom-16 md:bottom-7 sm:left-10 left-7 text-[18px] font-semibold`}> ****{bankDetails?.accountNumber.slice(-4)}</div>
              
             </div>
 

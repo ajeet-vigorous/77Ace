@@ -229,11 +229,11 @@ const History = () => {
             <tr key={index}>
                 <td className="px-6 py-2 whitespace-nowrap border-b">{item.Type || '-'}</td>
                 <td className="px-6 py-2 whitespace-nowrap border-b">{item.oddsType || '-'}</td>                
-                <td className="px-6 py-2 whitespace-nowrap border-b">{item.odds || '-'}</td>
-                <td className="px-6 py-2 whitespace-nowrap border-b">{item.profit || '-'}</td>
-                <td className="px-6 py-2 whitespace-nowrap border-b">{item.loss || '-'}</td>      
+                <td className="px-6 py-2 whitespace-nowrap border-b">{Number(item.odds).toFixed(2) || '-'}</td>
+                <td className="px-6 py-2 whitespace-nowrap border-b">{Number(item.profit).toFixed(2) || '-'}</td>
+                <td className="px-6 py-2 whitespace-nowrap border-b">{Number(item.loss).toFixed(2) || '-'}</td>      
                 <td className="px-6 py-2 whitespace-nowrap border-b">{item.selection || '-'}</td>
-                <td className="px-6 py-2 whitespace-nowrap border-b">{item.stack}</td> 
+                <td className="px-6 py-2 whitespace-nowrap border-b">{Number(item.stack).toFixed(2) || '-'}</td> 
                 <td className="px-6 py-2 whitespace-nowrap border-b">{item.remark || '-'}</td>
                 <td className="px-6 py-2 whitespace-nowrap border-b">{new Date(item.createdAt).toLocaleString()}</td>
             </tr>
