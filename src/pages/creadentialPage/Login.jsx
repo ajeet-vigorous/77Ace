@@ -72,8 +72,8 @@ const [errors, setErrors] = useState({ username: "", password: "" });
         />
         <input
           placeholder="Please Enter your account or phone number"
-         type="tel"
-          maxLength={10}
+         type="text"
+         // maxLength={10}
           className="w-full text-[15px] h-[44px]  rounded-r-[12px] bg-[#261C1C]  px-4 text-white"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -102,7 +102,7 @@ const [errors, setErrors] = useState({ username: "", password: "" });
           <span className="text-red-500 text-[12px] mt-1 ml-4">{errors.password}</span>
         )}
       <div>
-        <div className="text-right text-[15px] my-5 underline text-red-500">
+        <div onClick={()=>{navigate('/forgetpassword')}} className="text-right text-[15px] my-5 underline text-red-500">
           Forget Password
         </div>
       </div>

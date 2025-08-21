@@ -19,8 +19,12 @@ const Withdraw = ({paymentScreen}) => {
            setError({amountError:'Please enter valid amount'})
             return
         }
-        if(amount < 200){
-            setError({amountError:'Please enter amount greater than 200'})
+        if(amount < 1){
+            setError({amountError:'Please enter amount greater than 1'})
+            return
+        }
+        if(Number(clientBalance).toFixed(2) < 1){
+            setError({amountError:'You have  insufficient balance'})
             return
         }
         if(amount > Number(clientBalance).toFixed(2)){
@@ -37,7 +41,7 @@ const Withdraw = ({paymentScreen}) => {
     useEffect(() => {
         dispatch(getAccountDetailsofClient())
     },[])
-    console.log(getAccountDetails)
+    
     return (
     <div className="">{
 
@@ -83,7 +87,7 @@ const Withdraw = ({paymentScreen}) => {
           }
 
 
-            <div className='text-[13px] pt-7 pb-4 text-white'>Withdrawal Amount (200-{Number(clientBalance).toFixed(2)} Rs)</div>
+            <div className='text-[13px] pt-7 pb-4 text-white'>Withdrawal Amount (0-{Number(clientBalance).toFixed(2)} Rs)</div>
             
 
            <div className='px-1'>
