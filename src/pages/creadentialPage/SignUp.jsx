@@ -74,7 +74,7 @@ const SignUp = () => {
       });
       return;
     }
-    // if (!otp) {
+    // if (!otp && clientdomainSetting?.isSignUpOtp) {
     //   setErrors({
     //     otp: otp ? "" : "Please enter  otp",
     //   });
@@ -157,7 +157,7 @@ const SignUp = () => {
         </span>
       )}
 
-      <div className="flex items-center gap-2 mt-7  justify-center  rounded-[12px] bg-[#261C1C]">
+      {clientdomainSetting?.isSignUpOtp && <div className="flex items-center gap-2 mt-7  justify-center  rounded-[12px] bg-[#261C1C]">
         <MdPhoneAndroid
           className="text-[#8A8888] bg-[#261C1C]  ml-4"
           size={28}
@@ -169,7 +169,7 @@ const SignUp = () => {
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
         />
-      </div>
+      </div>}
       {errors.otp && (
         <span className="text-red-500 text-[12px] mt-1 ml-4">{errors.otp}</span>
       )} */}
