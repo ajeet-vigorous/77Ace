@@ -35,7 +35,7 @@ const MyAccount = () => {
             </div>      
         </div>
         <div className="grid grid-cols-3 gap-x-12 rounded-[5px] absolute -bottom-[55px] h-[70px] bg-white/5 backdrop-blur-sm justify-center w-full">
-        <div onClick={() => navigate('/addcash', { state: { defaultTab: 'withdraw' } })} className="flex flex-col text-white justify-center  items-center">
+        <div onClick={() => navigate('/addcash', { state: { defaultTab: 'withdraw' } })} className="cursor-pointer flex flex-col text-white justify-center  items-center">
                 <img src="sidebar/myaccount/user-withdraw.webp" alt="" height={32} width={32}/>
                  <span className='text-[13px]'>Withdraw</span>
                </div>
