@@ -4,6 +4,7 @@ import { casinoTab, footerImages, sliderData } from "../../config/global";
 import SliderComponent from "../../component/slider/Slider";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import NotificationModal from "./NotificationModal";
 
 
 const Dashboard = () => {
@@ -47,15 +48,21 @@ const Dashboard = () => {
       gameLink: item.priority,
     }
   })
+
+  const [openNotification, setOpenNotification] = useState(false);
+  const handleNotificationClick = () => {
+    setOpenNotification(prev => !prev);
+  };
+
   
 
   return (
     <div className="w-full h-screen hide-scrollbar  overflow-auto ">
-      {clientdomainSetting?.clientNotification && <div className="w-full flex  flex-row h-[32px] mt-1 mb-3">
+      {clientdomainSetting?.clientNotification && <div onClick={()=>{handleNotificationClick()}} className="w-full flex  flex-row h-[32px] mt-1 mb-3">
         <div className="flex items-center h-[32px] justify-end w-[56px] pr-2">
           <img src="/dashboard/speaker.svg" height={20} width={20} alt="" />
         </div>
-        <div className="flex items-center h-[32px] w-full text-white justify-center bg-gradient-to-r from-[#3a1414] via-[#1e0d0d] to-black">
+        <div  className="flex items-center h-[32px] w-full text-white justify-center bg-gradient-to-r from-[#3a1414] via-[#1e0d0d] to-black">
           <marquee
             behavior="scroll"
             direction="left"
@@ -136,6 +143,7 @@ const Dashboard = () => {
               );
             })}
       </div>
+      
 
       <div className="w-full justify-center items-center grid grid-cols-4 gap-x-10 gap-y-6 mt-16 px-6 ">
       {intGrupCsnoList?.providerList
@@ -178,7 +186,11 @@ const Dashboard = () => {
             </div>
         </div>
       ) : null}
+ {openNotification && (
+        <NotificationModal handleNotificationClick={handleNotificationClick} />
+      )}
 
+     
     </div>
   );
 };
