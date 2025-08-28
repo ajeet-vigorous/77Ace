@@ -107,7 +107,7 @@ const [errors, setErrors] = useState({ username: "", password: "" });
         </div>
       </div>
 
-      <button disabled={login_loading} onClick={submitHandler} className="w-full uppercase mt-1 bg-gradient-to-t from-[#ec1809] to-[#c45f5f] text-white text-[16px] font-semibold rounded-[5px] py-2">
+      <button  onClick={submitHandler} className="w-full uppercase mt-1 bg-gradient-to-t from-[#ec1809] to-[#c45f5f] text-white text-[16px] font-semibold rounded-[5px] py-2">
         Confirm
       </button>
 
