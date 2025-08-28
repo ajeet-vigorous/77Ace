@@ -50,8 +50,8 @@ const dispatch = useDispatch();
     <>
       <div className="grid sm:grid-cols-2 grid-cols-[0.3fr_1fr] h-full justify-center items-center " >
         <div className="flex gap-2 h-full justify-start  items-center !pl-[20px]">
-          <img src="/header/btn.webp" onClick={handleSidebarToggle} alt="" className="w-[35px] h-[37px]"/>
-          <img onClick={()=>{ window.open('/', '_blank');}} src="/header/logo.webp" alt="" className="w-[105.5px] h-[32px] sm:block hidden" />
+          <img src="/header/btn.webp" onClick={handleSidebarToggle} alt="" className="w-[35px] h-[37px] cursor-pointer"/>
+          <img onClick={()=>{ window.open('/', '_blank');}} src="/header/logo.webp" alt="" className="w-[105.5px] h-[32px] cursor-pointer sm:block hidden" />
           <img src="/header/logo-low.webp" alt="" className="!min-w-[50px] h-[32px] sm:hidden block" />
         </div>
         {token && <div className="flex gap-2 h-full justify-end  items-center !pr-[12px]">
@@ -59,11 +59,11 @@ const dispatch = useDispatch();
             <div className="flex justify-center items-center gap-0.5 pl-1 text-white"><MdCurrencyRupee size={13}/> {clientBalance ? Number(clientBalance).toFixed(2) : "0.00"}</div>
             <div className="flex gap-2 h-full justify-around  items-center">
             <img src="/header/reset.webp" alt="" onClick={()=>{handleRotate()}}    className={`w-[20px] h-[20px] transition-transform duration-150 ${rotate ? 'rotate-180' : 'rotate-0'}`}/>
-            <img onClick={()=>{navigate('/addcash')}} src="/header/deposit.webp" alt=""  className="w-[35px] h-full"/>
+            <img onClick={()=>{navigate('/addcash')}} src="/header/deposit.webp" alt=""  className="w-[35px] h-full cursor-pointer"/>
             </div>           
           </div>
 
-          <div onClick={handleSubHeaderToggle} className="rounded-full w-[45px] h-[45px]" style={{backgroundImage: "url('/header/1-1.webp')",backgroundSize: "cover",backgroundPosition: "center",backgroundRepeat: "no-repeat"}}>
+          <div onClick={handleSubHeaderToggle} className="rounded-full w-[45px] h-[45px] cursor-pointer" style={{backgroundImage: "url('/header/1-1.webp')",backgroundSize: "cover",backgroundPosition: "center",backgroundRepeat: "no-repeat"}}>
             
           </div>
 
