@@ -6,10 +6,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { register } from "../../redux/reducers/auth.reducer";
 import { useDispatch } from "react-redux";
 import { ForForgetPassword, senOtp } from "../../redux/reducers/user_reducer";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 const ForgetPassword = () => {
-  const clientdomainSetting = JSON.parse(
-    localStorage.getItem("clientdomainSetting")
-  );
+  const clientdomainSetting = getDecryptedItem("0x02");
 
   const { referralCode } = useParams();
 

@@ -1,5 +1,6 @@
 
 import { apiCall } from "../../config/HTTP";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 async function casinoBetPlaceFunc(data) {
   try {
@@ -17,7 +18,7 @@ async function intCasinoCateogeoryWiseList(data) {
   try {
     const response = await apiCall("POST", "website/getCateogeory", data);
     if(response){
-      localStorage.setItem("intCasinoList", JSON.stringify(response?.data));
+      setEncryptedItem("0x13", (response?.data));
     }
   return response
   } catch (error) {
@@ -30,7 +31,7 @@ async function getCasinoByCategory(data) {
   try {
     const response = await apiCall("POST", "website/getCasinoListByCateogeory", data);
     if(response){
-      localStorage.setItem("getCasinoListByCateogeory", JSON.stringify(response?.data));
+      setEncryptedItem("getCasinoListByCateogeory", (response?.data));
     }
   return response
   } catch (error) {
@@ -45,7 +46,7 @@ async function intGrupCsnoList(data) {
   try {
     const response = await apiCall("POST", "website/getInternationalGroupCasinoList", data);
     if(response){
-      localStorage.setItem("intGrupCsnoList", JSON.stringify(response?.data));
+      setEncryptedItem("intGrupCsnoList", (response?.data));
       
     }
 

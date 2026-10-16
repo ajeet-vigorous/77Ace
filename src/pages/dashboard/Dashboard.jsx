@@ -5,20 +5,21 @@ import SliderComponent from "../../component/slider/Slider";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NotificationModal from "./NotificationModal";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("trendingGames");
   const token = localStorage.getItem("token");
   const { intGrupCsnoListData } = useSelector((state) => state.casino);
-  const clientdomainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
+  const clientdomainSetting = getDecryptedItem("0x02");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dashboardModalOpen = localStorage.getItem("dashboardModalOpen")
   const [modalOpen, setModalOpen] = useState(dashboardModalOpen=="true"?true:false);
  
 
-  const intGrupCsnoList = JSON.parse(localStorage.getItem("intGrupCsnoList"));
+  const intGrupCsnoList = getDecryptedItem("intGrupCsnoList");
  
 
   const handleGameClick = (game) => {

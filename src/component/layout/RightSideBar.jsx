@@ -1,6 +1,7 @@
 import {  useNavigate } from "react-router-dom";
 import { rightSideBarJson } from "../../config/global";
 import { domainName } from "../../config/Auth";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 
 const RightSideBar = ({toggleSidebar}) => {
@@ -18,22 +19,22 @@ const RightSideBar = ({toggleSidebar}) => {
     }
   }
 
-  const user = JSON.parse(
-    localStorage.getItem(`user_info_${domainName}`)
-  );
+  const user = getDecryptedItem(`user_info_${domainName}`);
 
   
 const hanldeLogout = () => {
   localStorage.removeItem(`user_info_${domainName}`);
   localStorage.removeItem('token');
-  localStorage.removeItem('clientBalance');
-  localStorage.removeItem('betSlipData');
-  localStorage.removeItem('clientbetChipsData');
-  localStorage.removeItem('oneBetAmount');
-  localStorage.removeItem('oneClickStatus');
+  localStorage.removeItem('0x05');
+  localStorage.removeItem('0x09');
+  localStorage.removeItem('0x06');
+  localStorage.removeItem('0x07');
+  localStorage.removeItem('0x08');
   localStorage.removeItem('dashboardModalOpen');
  
   localStorage.removeItem('selectedTab');
+  // encrypted balance / exposure keys
+  ['0x11', '0x12', '0x14', '0x15'].forEach((k) => localStorage.removeItem(k));
 
   
   

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { intCasinoCateogeoryWiseList } from "../redux/reducers/casino.reducer";
+import { getDecryptedItem, setEncryptedItem } from "../config/localStoresHide";
 
 const useIntCasinoCategoryList = () => {
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const useIntCasinoCategoryList = () => {
 
     // Step 1: Load from localStorage or dispatch main category fetch
     useEffect(() => {
-        const storedData = JSON.parse(localStorage.getItem("intCasinoList"));
+        const storedData = getDecryptedItem("0x13");
         if (storedData && Array.isArray(storedData) && storedData.length > 0) {
             setLocalData(storedData);
         } else if (!intCasinoCateogeoryWiseListData || intCasinoCateogeoryWiseListData.length === 0) {
@@ -29,7 +30,7 @@ const useIntCasinoCategoryList = () => {
     useEffect(() => {
         if (intCasinoCateogeoryWiseListData && intCasinoCateogeoryWiseListData.length > 0 && !localData) {
             setLocalData(intCasinoCateogeoryWiseListData);
-            localStorage.setItem("intCasinoList", JSON.stringify(intCasinoCateogeoryWiseListData));
+            setEncryptedItem("0x13", (intCasinoCateogeoryWiseListData));
         }
     }, [intCasinoCateogeoryWiseListData, localData]);
 

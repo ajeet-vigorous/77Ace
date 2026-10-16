@@ -2,9 +2,9 @@ const GrandExchangeSettings = {
   title: "GRANDEXCH",
   favicon: "/favicon/fav-icon.png",
   logo: "/logo/grandexchange.png",
-  SOCKET_URL: "https://socket.trovetown.co/",
+  SOCKET_URL: "https://api.sikander777.com/",
   // apiurl: "https://api.plx99.com/v1/",
-  apiurl: "https://api.10xbpexch.com/v1/",
+  apiurl: "https://api.sikander777.com/v1/",
 
 // apiurl:"https://api.bmexch.com/v1/",
 // apiurl:"https://api.10xbpexch.com/v1/",
@@ -36,7 +36,7 @@ const SaffronExchSettings = {
   title: "SAFFRRONEXCH",
   favicon: "/favicon/favicon-32x32.png",
   logo: "/logo/safronlogo.png",
-  SOCKET_URL: "https://socket.trovetown.co/",
+  SOCKET_URL: "https://api.sikander777.com/",
   apiurl: "https://api.plx99.com/v1/",
   domainName: "SAFFRRONEXCH",
   colors: {

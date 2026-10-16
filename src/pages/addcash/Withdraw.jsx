@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getAccountDetailsofClient, withDrawRequest } from '../../redux/reducers/user_reducer'
 import { useSelector } from 'react-redux'
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 const Withdraw = ({paymentScreen}) => {
     const navigate = useNavigate();
     const [error,setError] = useState({
         amountError:'',
     });
-    const clientBalance = JSON.parse(localStorage.getItem('clientBalance'));
+    const clientBalance = getDecryptedItem("0x05");
     const {getAccountDetails} = useSelector((state) => state.user);
    const amountDetail=[{name:'Withdrawal Amount',amount:clientBalance}]
     const [amount,setAmount] = useState();

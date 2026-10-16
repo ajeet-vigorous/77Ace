@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { PiSpeakerHighDuotone } from "react-icons/pi";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 const NotificationModal = ({ handleNotificationClick }) => {
-  const notification = JSON.parse(localStorage?.getItem("clientdomainSetting"));
+  const notification = getDecryptedItem("0x02");
   const [hideNotification, setHideNotification] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
 

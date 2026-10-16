@@ -4,11 +4,17 @@ import { intGrupCsnoList } from "../../redux/reducers/casino.reducer";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserBalance } from "../../redux/reducers/user_reducer";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 const AppHeader = ({toggleSidebar,toggleSubHeader}) => {
   const navigate = useNavigate()
   const token = localStorage.getItem("token");
-  const clientBalance = localStorage.getItem("clientBalance") ? localStorage.getItem("clientBalance") : 0;
+  // balance: login hote hi taaza value, phir har second 0x05 se (refresh button / socket ke baad bhi update)
+  const [clientBalance, setClientBalance] = useState(getDecryptedItem("0x05") ?? 0);
+  useEffect(() => {
+    const interval = setInterval(() => setClientBalance(getDecryptedItem("0x05") ?? 0), 1000);
+    return () => clearInterval(interval);
+  }, []);
   const [rotate, setRotate] = useState(false);
   const handleRotate = () => {
     setRotate(true);
@@ -42,7 +48,8 @@ const dispatch = useDispatch();
     }
     
       dispatch(intGrupCsnoList(data))
-   
+      if (token) dispatch(getUserBalance())
+
   },[])
 
 

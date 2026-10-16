@@ -1,18 +1,19 @@
 import { domainName } from "../../config/Auth";
 import { apiCall } from "../../config/HTTP";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 async function login(data) {
   try {
     const user = await apiCall("POST", "user/login", data);
 
     if (user) {
-      localStorage.setItem(`user_info_${domainName}`, JSON.stringify(user));
-      localStorage.setItem("token", JSON.stringify(user?.token))
-      localStorage.setItem("clientBalance", JSON.stringify(user?.data?.balance));
-      localStorage.setItem("clientbetChipsData", JSON.stringify(user?.data?.betChipsData));
-      localStorage.setItem('oneBetAmount', JSON.stringify(user.data.oneClickBetAmount ? user.data.oneClickBetAmount : 0));
-      localStorage.setItem('oneClickStatus', JSON.stringify(false));
-      localStorage.setItem('betSlipData', JSON.stringify([100, 200, 300]));
+      setEncryptedItem(`user_info_${domainName}`, (user));
+      setEncryptedItem("token", (user?.token))
+      setEncryptedItem("0x05", (user?.data?.balance));
+      setEncryptedItem("0x06", (user?.data?.betChipsData));
+      setEncryptedItem("0x07", (user.data.oneClickBetAmount ? user.data.oneClickBetAmount : 0));
+      setEncryptedItem("0x08", (false));
+      setEncryptedItem("0x09", ([100, 200, 300]));
       localStorage.setItem('dashboardModalOpen', true);
       return { userinfo: user };
     }

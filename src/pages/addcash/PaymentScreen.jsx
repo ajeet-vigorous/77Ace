@@ -11,6 +11,7 @@ import {
 } from "../../redux/reducers/user_reducer";
 import { toast } from "react-toastify";
 import { RxCross2 } from "react-icons/rx";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 const PaymentScreen = ({
   paymentScreen,
@@ -82,7 +83,7 @@ const PaymentScreen = ({
   };
   const [utrNo, setUtrNo] = useState();
   const [error, setError] = useState({ amountError: "", utrNoError: "", screenShotImgError: "" });
-  const domainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
+  const domainSetting = getDecryptedItem("0x02");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBankDetailsByUserId());

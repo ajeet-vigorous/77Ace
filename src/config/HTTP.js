@@ -3,6 +3,7 @@ import axios from "axios";
 import { domainName } from "./Auth";
 import settings from "../domainConfig";
 import CryptoJS from "crypto-js";
+import { getDecryptedItem, setEncryptedItem } from "./localStoresHide";
 
 
 
@@ -13,7 +14,7 @@ export const baseUrl = {
 };
 
 export function authHeader() {
-    const user = JSON.parse(localStorage.getItem(`user_info_${domainName}`) || 'null');
+    const user = (getDecryptedItem(`user_info_${domainName}`) ?? null);
     if (user && user.token) {
         return { 'Authorization': 'Bearer ' + user.token };
     } else {
@@ -21,19 +22,30 @@ export function authHeader() {
     }
 }
 
+function encryptPayload(payload) {
+    if (import.meta.env.VITE_SECRET_KEY_DECREPT_FLAG) {
+        const payloadWithTimestamp = {
+            ...payload,
+            timestamp: new Date().toISOString()
+        };
+        const encryptedData = CryptoJS.AES.encrypt(
+            JSON.stringify(payloadWithTimestamp),
+            import.meta.env.VITE_SECRET_KEY_DECREPT).toString();
+
+        return {
+            data: encryptedData,
+            isEncruption: true
+        };
+    }
+    return payload;
+}
+
 export const apiCall = async (method, path, payload) => {
-    // if (import.meta.env.VITE_SECRET_KEY_DECREPT_FLAG && path !="user/login") {
-    //     const encryptedDataee = CryptoJS.AES.encrypt(JSON.stringify(payload), import.meta.env.VITE_SECRET_KEY_DECREPT).toString();
-    //      payload = {
-    //         data: encryptedDataee,
-    //         isEncruption: true
-    //     };
-    // }
     try {
         const response = await axios({
             method,
             url: baseUrl.BACKEND_URL + path,
-            data: payload,
+            data: encryptPayload(payload),
             headers: {
                 'Content-Type': 'application/json',
                 ...authHeader(),

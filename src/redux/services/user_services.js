@@ -1,4 +1,5 @@
 import { apiCall, apiCallForm } from "../../config/HTTP";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 async function getUserStatement(data) {
     try {
@@ -21,9 +22,9 @@ async function getUserStatement(data) {
   
       if (user) {
   
-        localStorage.setItem("clientBalance", JSON.stringify(+user?.data?.coins));
-        localStorage.setItem('clientExposure', JSON.stringify(+user?.data?.exposure));
-        localStorage.setItem('clientProfitLoss', JSON.stringify(+user?.data?.profitLoss));
+        setEncryptedItem("0x05", (+user?.data?.coins));
+        setEncryptedItem("0x11", (+user?.data?.exposure));
+        setEncryptedItem("0x12", (+user?.data?.profitLoss));
         return user;
       }
     } catch (error) {
@@ -48,7 +49,7 @@ async function getUserStatement(data) {
   }
 
   async function getDomainSettings (data) {
-    const clientdomainSetting = JSON.parse(localStorage.getItem('clientdomainSetting'));
+    const clientdomainSetting = getDecryptedItem("0x02");
     let user;
     try {
       if(clientdomainSetting){
@@ -56,7 +57,7 @@ async function getUserStatement(data) {
       }
       else{
         const response = await apiCall("POST", "website/domainSettingByDomainName",data);
-        localStorage.setItem('clientdomainSetting', JSON.stringify(response.data));
+        setEncryptedItem("0x02", (response.data));
         user = response;
       }
 

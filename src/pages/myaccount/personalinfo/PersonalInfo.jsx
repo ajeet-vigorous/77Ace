@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { updatePassword } from '../../../redux/reducers/auth.reducer';
 import { userUpdate } from '../../../redux/reducers/user_reducer';
 import { message } from 'antd';
+import { getDecryptedItem, setEncryptedItem } from "../../../config/localStoresHide";
 const PersonalInfo = () => {
     const navigate = useNavigate();
     const [edit,setEdit] = useState('');
@@ -20,7 +21,7 @@ const PersonalInfo = () => {
     const [confirmPassword,setConfirmPassword] = useState('');
     const [fullName,setFullName] = useState('');
     const [nickName,setNickName] = useState('');
-    const userDetails = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
+    const userDetails = getDecryptedItem(`user_info_${domainName}`);
 
     const dispatch = useDispatch();
     const upadatePassword = () => {

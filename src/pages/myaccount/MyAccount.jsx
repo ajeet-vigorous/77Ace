@@ -2,21 +2,24 @@ import React from 'react'
 import { MdCurrencyRupee } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { domainName } from '../../config/Auth';
+import { getDecryptedItem } from '../../config/localStoresHide';
 
 const MyAccount = () => {
     const navigate = useNavigate();
-    const clientBalance = localStorage.getItem("clientBalance");
+    const clientBalance = getDecryptedItem("0x05");
     const hanldeLogout = () => {
       localStorage.removeItem(`user_info_${domainName}`);
       localStorage.removeItem('token');
-      localStorage.removeItem('clientBalance');
-      localStorage.removeItem('betSlipData');
-      localStorage.removeItem('clientbetChipsData');
-      localStorage.removeItem('oneBetAmount');
-      localStorage.removeItem('oneClickStatus');
+      localStorage.removeItem('0x05');
+      localStorage.removeItem('0x09');
+      localStorage.removeItem('0x06');
+      localStorage.removeItem('0x07');
+      localStorage.removeItem('0x08');
       localStorage.removeItem('dashboardModalOpen');
      
       localStorage.removeItem('selectedTab');
+      // encrypted balance / exposure keys
+      ['0x11', '0x12', '0x14', '0x15'].forEach((k) => localStorage.removeItem(k));
       
       
       

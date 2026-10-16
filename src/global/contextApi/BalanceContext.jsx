@@ -3,37 +3,35 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 import { domainName } from '../../config/Auth';
 import { getSocket, initSocket } from '../socket/SocketConn';
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 
 const BalanceContext = createContext();
 
 export const BalanceProvider = ({ children }) => {
   const [balance, setBalance] = useState({
-    coins: JSON.parse(localStorage.getItem("wallet-balance")) || "",
-    exposure: JSON.parse(localStorage.getItem("wallet-exposure")) || ""
+    coins: getDecryptedItem("0x14") || "",
+    exposure: getDecryptedItem("0x15") || ""
   });
 
 
   useEffect(() => {
     
     function updateSocket() {
-      let userID = JSON.parse(localStorage.getItem(`user_info_${domainName}`));
+      let userID = getDecryptedItem(`user_info_${domainName}`);
       let token_Id = userID?.token;
       let socket = getSocket();
 
       if (!socket || socket == null) {
         socket = initSocket(token_Id);
- 
-        const loginData = {
-          userId: userID?.data?.userId,
-          token: token_Id,
-        };
-        socket.emit(`login`, loginData);
       }
      
       socket.on("coinUpdate", (data) => {
-        localStorage.setItem("wallet-balance", JSON.stringify(data.coins));
-        localStorage.setItem("wallet-exposure", JSON.stringify(data.exposure));
+        setEncryptedItem("0x14", (data.coins));
+        setEncryptedItem("0x15", (data.exposure));
+        // header / my account 0x05 / 0x11 padhte hain - live value wahan bhi
+        setEncryptedItem("0x05", (data.coins));
+        setEncryptedItem("0x11", (data.exposure));
         setBalance({
           coins: data.coins,
           exposure: data.exposure,

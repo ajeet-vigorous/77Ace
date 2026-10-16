@@ -1,11 +1,12 @@
 import { apiCall } from "../../config/HTTP";
+import { getDecryptedItem, setEncryptedItem } from "../../config/localStoresHide";
 
 async function getSportmatchList(data) {
     try {
         const response = await apiCall("POST", "sports/matchList", data);
         if (response) {
             const matchList = response?.data && Object.keys(response?.data).length > 0 ? response?.data : [];
-            localStorage.setItem("matchList", JSON.stringify(matchList));
+            setEncryptedItem("0x04", (matchList));
             return response;
           }
     } catch (error) {

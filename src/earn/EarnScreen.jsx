@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { domainName } from '../config/Auth';
 import { MdCurrencyRupee } from 'react-icons/md';
+import { getDecryptedItem, setEncryptedItem } from "../config/localStoresHide";
 
 const EarnScreen = ({setCopyUrl, copyUrl}) => {
     const location = window.location.host;
-    const user = JSON.parse(
-        localStorage.getItem(`user_info_${domainName}`)
-      );
+    const user = getDecryptedItem(`user_info_${domainName}`);
       const copyToClipBoard = () => {
         navigator.clipboard.writeText(location + "/" + user?.data?.referralCode);
         handleCopyUrl()
